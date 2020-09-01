@@ -15,7 +15,7 @@ The above copyright notice and this permission notice shall be included in all c
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="icon" type="image/png" href="{{asset('assets/img/logo-pos.png')}}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Kantor Pos Pati
@@ -32,15 +32,20 @@ The above copyright notice and this permission notice shall be included in all c
 
 <body class="">
   <div class="wrapper ">
-    <div class="sidebar" data-color="orange" data-background-color="white">
+    <div class="sidebar" data-color="orange" data-background-color="white" data-image="{{asset('assets/img/logo-pos.png')}}">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
         Tip 2: you can also add an image using data-image tag
     -->
-      <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+      <div class="logo">
+        <div class="simple-text logo-normal">
           Bag. Dukungan Umum
-        </a></div>
+        </div>
+        <div class="simple-text logo-normal">
+          (Admin)
+        </div>
+      </div>
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="nav-item active  ">
@@ -105,7 +110,7 @@ The above copyright notice and this permission notice shall be included in all c
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">Dashboard</a>
+            <div class="navbar-brand"><h2 class="title">Dashboard</h2></div>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>

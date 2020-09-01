@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('admin.templates.default');
 });
+Route::get('/login', function () {
+    return view('login');
+});
