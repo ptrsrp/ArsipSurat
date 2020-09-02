@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V16</title>
+	<title>Kantor Pos Pati</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="{{ asset('assets/login/images/icons/favicon.ico')}}"/>
+	<link rel="icon" type="image/png" href="{{ asset('assets/login/images/logo-pos.png')}}"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/login/vendor/bootstrap/css/bootstrap.min.css')}}">
 <!--===============================================================================================-->
@@ -33,7 +33,7 @@
 		<div class="container-login100" style="background-image: url('{{asset('assets/login/images/pos.jpg')}}');">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
-					Account Login
+					Login
 				</span>
 				<form class="login100-form validate-form p-b-33 p-t-5">
 
