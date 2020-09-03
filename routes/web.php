@@ -11,9 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('admin.templates.default');
+// login
+Route::get('/login', 'LoginController@index')->name('login');
+Route::post('/postlogin', 'LoginController@postlogin')->name('postlogin');
+
+// validasi agar harus login dulu, tidak bisa masuk home sebelum login
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', 'HomeController@index')->name('home');
 });
-Route::get('/login', function () {
-    return view('login');
-});
+
+// logout
+Route::get('/logout', 'LoginController@logout')->name('logout');
+
+
