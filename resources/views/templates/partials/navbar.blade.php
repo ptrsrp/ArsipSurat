@@ -2,7 +2,8 @@
     <div class="container-fluid">
         <div class="navbar-wrapper">
             <div class="navbar-brand">
-                <h2 class="title">Dashboard</h2>
+                {{-- title --}}
+                @yield('title')
             </div>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"

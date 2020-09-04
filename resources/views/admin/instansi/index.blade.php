@@ -1,9 +1,8 @@
 @extends('templates.default')
 
 @section('title')
-<h2 class="title">Manajemen Petugas</h2>
+<h2 class="title">Manajemen Instansi</h2>
 @endsection
-
 @section('content')
-    <p>Ini manajemen petugas</p>
+    <p>Ini manajemen instansi</p>
 @endsection

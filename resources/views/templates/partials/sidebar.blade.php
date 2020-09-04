@@ -6,10 +6,10 @@
       Tip 2: you can also add an image using data-image tag-->
     <div class="logo">
         <div class="simple-text logo-normal">
-            Bag. Dukungan Umum
+            
         </div>
         <div class="simple-text logo-normal">
-            (Admin)
+            {{auth()->user()->name}}
         </div>
     </div>
     <div class="sidebar-wrapper">
@@ -20,14 +20,14 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./user.html">
+            <li class="{{Request::is('surat') ? 'active' : ''}}">
+                <a class="nav-link" href="{{route('surat')}}">
                     <i class="material-icons">mail_outline</i>
                     <p>Manajemen Surat</p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./tables.html">
+            <li class="{{Request::is('instansi') ? 'active' : ''}}">
+                <a class="nav-link" href="{{route('instansi')}}">
                     <i class="material-icons">business</i>
                     <p>Manajemen Instansi</p>
                 </a>
@@ -38,12 +38,14 @@
                     <p>Manajemen Pegawai</p>
                 </a>
             </li>
+            @if (auth()->user()->level=='admin')
             <li class=" {{Request::is('petugas') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('petugas')}}">
                     <i class="material-icons">assignment_ind</i>
                     <p>Manajemen Petugas</p>
                 </a>
             </li>
+            @endif
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('logout')}}">
                     <i class="material-icons">exit_to_app</i>
