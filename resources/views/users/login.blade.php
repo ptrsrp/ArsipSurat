@@ -33,11 +33,12 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ asset('assets/index2.html')}}"><b>Admin</b>LTE</a>
+            <img src="{{ asset('assets/img/logo-pos.png')}}" width="80px">
+            <p>Pengarsipan Surat Masuk dan Surat Keluar<p>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+            <h2 class="login-box-msg"><b>Login</b></h2>
 
             <form action="{{ route('postlogin')}}" method="post">
                 @csrf
@@ -52,7 +53,7 @@
                 <div class="row">
                     <!-- /.col -->
                     <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
                     </div>
                     <!-- /.col -->
                 </div>

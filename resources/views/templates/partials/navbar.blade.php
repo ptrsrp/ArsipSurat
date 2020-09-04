@@ -1,4 +1,5 @@
-<div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+    <div class="container-fluid">
         <div class="navbar-wrapper">
             <div class="navbar-brand">
                 <h2 class="title">Dashboard</h2>
@@ -12,3 +13,4 @@
             <span class="navbar-toggler-icon icon-bar"></span>
         </button>
     </div>
+</nav>

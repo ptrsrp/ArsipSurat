@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        return view('default');
+        return view('templates.default');
+    }
+
+    public function pegawai(){
+        return view('admin.pegawai.index');
+    }
+
+    public function petugas(){
+        return view('admin.petugas.index');
     }
 }
