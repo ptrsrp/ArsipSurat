@@ -11,17 +11,17 @@ class HomeController extends Controller
     }
 
     public function surat(){
-        return view('admin.surat.index');
+        return view('halaman.surat.index');
     }
 
     public function instansi(){
-        return view('admin.instansi.index');
+        return view('halaman.instansi.index');
     }
     public function pegawai(){
-        return view('admin.pegawai.index');
+        return view('halaman.pegawai.index');
     }
 
     public function petugas(){
-        return view('admin.petugas.index');
+        return view('halaman.petugas.index');
     }
 }
