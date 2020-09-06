@@ -1,15 +1,15 @@
 <div class="sidebar" data-color="orange" data-background-color="white"
-    data-image="{{asset('assets/img/logo-pos.png')}}">
+    data-image="{{asset('assets/img/pos.jpg')}}">
     <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
       Tip 2: you can also add an image using data-image tag-->
     <div class="logo">
         <div class="simple-text logo-normal">
-            
+            Bag. Dukungan Umum
         </div>
         <div class="simple-text logo-normal">
-            {{auth()->user()->name}}
+            ({{auth()->user()->level}})
         </div>
     </div>
     <div class="sidebar-wrapper">
@@ -39,13 +39,19 @@
                 </a>
             </li>
             @if (auth()->user()->level=='admin')
-            <li class=" {{Request::is('petugas') ? 'active' : ''}}">
-                <a class="nav-link" href="{{route('petugas')}}">
+            <li class=" {{Request::is('users') ? 'active' : ''}}">
+                <a class="nav-link" href="{{route('users')}}">
                     <i class="material-icons">assignment_ind</i>
-                    <p>Manajemen Petugas</p>
+                    <p>Manajemen Users</p>
                 </a>
             </li>
             @endif
+            <li class="{{Request::is('setting') ? 'active' : ''}}">
+                <a class="nav-link" href="{{route('setting')}}">
+                    <i class="material-icons">settings</i>
+                    <p>Pengaturan Akun</p>
+                </a>
+            </li>
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('logout')}}">
                     <i class="material-icons">exit_to_app</i>

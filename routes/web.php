@@ -24,11 +24,25 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
     Route::get('/surat', 'HomeController@surat')->name('surat');
     Route::get('/instansi', 'HomeController@instansi')->name('instansi');
     Route::get('/pegawai', 'HomeController@pegawai')->name('pegawai');
+    Route::get('/setting', 'HomeController@setting')->name('setting');
+
+    //surat masuk
+    Route::get('/surat-masuk', 'SuratMasukController@surat_masuk')->name('surat_masuk');
+
+    //surat keluar
+
+    //crud instansi
+
+    //pegawai
+
+    //bagian
+
+    //setting
 });
 
 
 Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
-    Route::get('/petugas', 'HomeController@petugas')->name('petugas');
+    Route::get('/users', 'HomeController@users')->name('users');
 });
 
 

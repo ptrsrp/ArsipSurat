@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        return view('templates.default');
+        return view('halaman.dashboard');
+    }
+    public function setting(){
+        return view('halaman.setting');
     }
 
     public function surat(){
@@ -21,7 +24,7 @@ class HomeController extends Controller
         return view('halaman.pegawai.index');
     }
 
-    public function petugas(){
-        return view('halaman.petugas.index');
+    public function users(){
+        return view('halaman.users.index');
     }
 }
