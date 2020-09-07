@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Instansi;
 use Illuminate\Http\Request;
 
 class InstansiController extends Controller
@@ -13,7 +14,8 @@ class InstansiController extends Controller
      */
     public function index()
     {
-        return view('halaman.instansi.index');
+        $data = Instansi::all();
+        return view('halaman.instansi.index', compact('data'));
     }
 
     /**
@@ -34,7 +36,11 @@ class InstansiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Instansi::create([
+            'nama' => $request->nama,
+            'alamat' => $request->alamat,
+        ]);
+        return redirect()->route('instansi');
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('templates.default')
 
 @section('title')
-<h2 class="title">Tambah Data</h2>
+<h2 class="title">Tambah Data Instansi</h2>
 @endsection
 
 @section('content')
@@ -10,15 +10,15 @@
         <div class="card-header">
         </div>
         <div class="card-body">
-            <form method="post">
+            <form action="{{route('simpan_instansi')}}" method="post">
+                @csrf
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                        placeholder="name@example.com">
+                    <label>Nama</label>
+                    <input type="text" class="form-control" name="nama">
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Example textarea</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label>Alamat</label>
+                    <textarea class="form-control" rows="3" name="alamat"></textarea>
                 </div>
                 <button type="submit" class="btn btn-success pull-right">Tambah</button>
                 <div class="clearfix"></div>

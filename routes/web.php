@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
     //instansi
     Route::get('/instansi', 'InstansiController@index')->name('instansi');
     Route::get('/tambah-instansi', 'InstansiController@create')->name('tambah_instansi');
+    Route::post('/simpan-instansi', 'InstansiController@store')->name('simpan_instansi');
 
     //pegawai
 

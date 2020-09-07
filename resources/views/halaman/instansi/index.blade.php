@@ -31,18 +31,16 @@
                                 <th>
                                     Alamat
                                 </th>
-                                <th>
-                                    Aksi
-                                </th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($data as $item)
                             <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>3</td>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->nama }}</td>
+                            <td>{{ $item->alamat }}</td>
                             </tr>
+                            @endforeach   
                         </tbody>
                     </table>
                 </div>
