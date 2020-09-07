@@ -16,11 +16,15 @@ class CreatePegawaiTable extends Migration
         Schema::create('pegawai', function (Blueprint $table) {
             $table->bigIncrements('nippos');
             $table->string('nama');
-            $table->string('jabatan');
             $table->unsignedBigInteger('id_bagian');
+            $table->unsignedBigInteger('id_jabatan');
+            $table->string('foto');
             $table->timestamps();
 
             $table->foreign('id_bagian')->references('id')->on('bagian')
+                    ->onUpdate('CASCADE')
+                    ->onDelete('CASCADE');
+            $table->foreign('id_jabatan')->references('id')->on('jabatan')
                     ->onUpdate('CASCADE')
                     ->onDelete('CASCADE');
         });
