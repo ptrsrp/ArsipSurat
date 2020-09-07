@@ -20,9 +20,9 @@ Route::post('/postlogin', 'LoginController@postlogin')->name('postlogin');
 
 // validasi agar harus login dulu, tidak bisa masuk home sebelum login
 Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
     Route::get('/surat', 'HomeController@surat')->name('surat');
-    Route::get('/instansi', 'HomeController@instansi')->name('instansi');
+    
     Route::get('/pegawai', 'HomeController@pegawai')->name('pegawai');
     Route::get('/setting', 'HomeController@setting')->name('setting');
 
@@ -31,7 +31,9 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
 
     //surat keluar
 
-    //crud instansi
+    //instansi
+    Route::get('/instansi', 'InstansiController@index')->name('instansi');
+    Route::get('/tambah-instansi', 'InstansiController@create')->name('tambah_instansi');
 
     //pegawai
 

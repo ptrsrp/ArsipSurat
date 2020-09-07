@@ -14,8 +14,8 @@
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-        <li class="{{Request::is('home') ? 'active' : ''}}">
-                <a class="nav-link" href="{{route('home')}}">
+        <li class="{{Request::is('dashboard') ? 'active' : ''}}">
+                <a class="nav-link" href="{{route('dashboard')}}">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
                 </a>

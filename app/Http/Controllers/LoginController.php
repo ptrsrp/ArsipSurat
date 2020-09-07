@@ -13,7 +13,7 @@ class LoginController extends Controller
     public function postlogin(Request $request){
         // dd($request->all());
         if (Auth::attempt($request->only('username','password'))) {
-            return redirect()->route('home');
+            return redirect()->route('dashboard');
         }
         return redirect()->route('login');
     }
