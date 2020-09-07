@@ -7,9 +7,7 @@
 @section('content')
 <div class="col-md-12">
     <div class="card">
-        <div class="card-header card-header-warning">
-            <h4 class="card-title">Edit Profil</h4>
-            <p class="card-category">Complete your profile</p>
+        <div class="card-header">
         </div>
         <div class="card-body">
             <form>
@@ -87,7 +85,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-warning pull-right">Update Profile</button>
+                <button type="submit" class="btn btn-info pull-right">Update Profile</button>
                 <div class="clearfix"></div>
             </form>
         </div>

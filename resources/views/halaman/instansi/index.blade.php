@@ -9,12 +9,16 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <a href="{{route('tambah_instansi')}}">
-                    <button type="button" class="btn btn-info"><i class="fa fa-plus-circle"></i> Tambah Data</button>
+                <form class="form-inline float-left">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Cari">
+                    <a type="button"><i class="material-icons">search</i></a>
+                  </form>
+                <a href="{{route('tambah_instansi')}}" class="float-right">
+                    <button type="button" class="btn btn-success"><i class="fa fa-plus-circle"></i> Tambah Data</button>
                 </a>
             </div>
             <div class="card-body">
-                <div class="table-responsive table-bordered">
+                <div class="table-responsive">
                     <table class="table ">
                         <thead>
                             <tr>
@@ -27,12 +31,16 @@
                                 <th>
                                     Alamat
                                 </th>
+                                <th>
+                                    Aksi
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1</td>
                                 <td>2</td>
+                                <td>3</td>
                                 <td>3</td>
                             </tr>
                         </tbody>
