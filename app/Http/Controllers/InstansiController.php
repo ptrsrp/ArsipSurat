@@ -14,8 +14,8 @@ class InstansiController extends Controller
      */
     public function index()
     {
-        $data = Instansi::all();
-        return view('halaman.instansi.index', compact('data'));
+        $instansi = Instansi::paginate(1);
+        return view('halaman.instansi.index', compact('instansi'));
     }
 
     /**
@@ -25,7 +25,7 @@ class InstansiController extends Controller
      */
     public function create()
     {
-        return view('halaman.instansi.tambah');
+        
     }
 
     /**
@@ -40,7 +40,7 @@ class InstansiController extends Controller
             'nama' => $request->nama,
             'alamat' => $request->alamat,
         ]);
-        return redirect()->route('instansi');
+        return redirect('instansi')->with('success', 'Data Berhasil Ditambahkan!');
     }
 
     /**
@@ -62,7 +62,7 @@ class InstansiController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -74,7 +74,11 @@ class InstansiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Instansi::where(['id' => $id])->update([
+            'nama'=> $request->nama,
+            'alamat'=> $request->alamat,
+        ]);        
+        return redirect('instansi')->with('success', 'Data Berhasil Diupdate!');
     }
 
     /**
@@ -85,6 +89,8 @@ class InstansiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $instansi = Instansi::findorfail($id);
+        $instansi->delete();
+        return back()->with('info', 'Data Berhasil Dihapus!');
     }
 }

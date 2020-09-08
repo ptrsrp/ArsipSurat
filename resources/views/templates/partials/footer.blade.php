@@ -4,7 +4,7 @@
             &copy;
             <script>
                 document.write(new Date().getFullYear())
-            </script>, made by Putri SP
+            </script>, Aplikasi Pengarsipan Surat Masuk dan Surat Keluar by Putri
         </div>
     </div>
 </footer>

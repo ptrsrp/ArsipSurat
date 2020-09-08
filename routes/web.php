@@ -27,14 +27,15 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
     Route::get('/setting', 'HomeController@setting')->name('setting');
 
     //surat masuk
-    Route::get('/surat-masuk', 'SuratMasukController@surat_masuk')->name('surat_masuk');
+    Route::get('/surat-masuk', 'SuratMasukController@surat_masuk')->name('surat-masuk');
 
     //surat keluar
 
-    //instansi
+    //INSTANSI
     Route::get('/instansi', 'InstansiController@index')->name('instansi');
-    Route::get('/tambah-instansi', 'InstansiController@create')->name('tambah_instansi');
-    Route::post('/simpan-instansi', 'InstansiController@store')->name('simpan_instansi');
+    Route::post('/simpan-instansi', 'InstansiController@store')->name('simpan.instansi');
+    Route::put('/update-instansi/{id}', 'InstansiController@update')->name('update.instansi');
+    Route::get('/hapus-instansi/{id}', 'InstansiController@destroy')->name('hapus.instansi');
 
     //pegawai
 
