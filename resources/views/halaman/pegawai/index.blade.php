@@ -11,7 +11,7 @@
             <div class="card card-stats">
                 <div class="card-header card-header-primary card-header-icon">
                     <div class="card-icon">
-                        <i class="fa fa-envelope"></i>
+                        <i class="fa fa-address-book"></i>
                     </div>
                     <h3 class="card-title">Pegawai</h3>
                 </div>
@@ -21,11 +21,11 @@
         </a>
     </div>
     <div class="col-md-4">
-        <a class="card-link" href="#">
+        <a class="card-link" href="{{route('bagian')}}">
             <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                     <div class="card-icon">
-                        <i class="fa fa-paper-plane"></i>
+                        <i class="fa fa-building"></i>
                     </div>
                     <h3 class="card-title">Bagian</h3>
                 </div>
@@ -35,7 +35,7 @@
         </a>
     </div>
     <div class="col-md-4">
-        <a class="card-link" href="#">
+        <a class="card-link" href="{{route('jabatan')}}">
             <div class="card card-stats">
                 <div class="card-header card-header-info card-header-icon">
                     <div class="card-icon">

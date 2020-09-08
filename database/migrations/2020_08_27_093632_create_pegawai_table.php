@@ -18,7 +18,6 @@ class CreatePegawaiTable extends Migration
             $table->string('nama');
             $table->unsignedBigInteger('id_bagian');
             $table->unsignedBigInteger('id_jabatan');
-            $table->string('foto');
             $table->timestamps();
 
             $table->foreign('id_bagian')->references('id')->on('bagian')

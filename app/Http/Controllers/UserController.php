@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Instansi;
 use Illuminate\Http\Request;
 
-class InstansiController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class InstansiController extends Controller
      */
     public function index()
     {
-        $instansi = Instansi::paginate(5);
-        return view('halaman.instansi.index', compact('instansi'));
+        //
     }
 
     /**
@@ -25,7 +23,7 @@ class InstansiController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -36,11 +34,7 @@ class InstansiController extends Controller
      */
     public function store(Request $request)
     {
-        Instansi::create([
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-        ]);
-        return redirect('instansi')->with('success', 'Data Berhasil Ditambahkan!');
+        //
     }
 
     /**
@@ -62,7 +56,7 @@ class InstansiController extends Controller
      */
     public function edit($id)
     {
-        
+        //
     }
 
     /**
@@ -74,11 +68,7 @@ class InstansiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Instansi::where(['id' => $id])->update([
-            'nama'=> $request->nama,
-            'alamat'=> $request->alamat,
-        ]);        
-        return redirect('instansi')->with('success', 'Data Berhasil Diupdate!');
+        //
     }
 
     /**
@@ -89,8 +79,6 @@ class InstansiController extends Controller
      */
     public function destroy($id)
     {
-        $instansi = Instansi::findorfail($id);
-        $instansi->delete();
-        return back()->with('info', 'Data Berhasil Dihapus!');
+        //
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Instansi;
+use App\Jabatan;
 use Illuminate\Http\Request;
 
-class InstansiController extends Controller
+class JabatanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class InstansiController extends Controller
      */
     public function index()
     {
-        $instansi = Instansi::paginate(5);
-        return view('halaman.instansi.index', compact('instansi'));
+        $jabatan = Jabatan::paginate(5);
+        return view('halaman.pegawai.jabatan.index', compact('jabatan'));
     }
 
     /**
@@ -25,7 +25,7 @@ class InstansiController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -36,11 +36,10 @@ class InstansiController extends Controller
      */
     public function store(Request $request)
     {
-        Instansi::create([
+        Jabatan::create([
             'nama' => $request->nama,
-            'alamat' => $request->alamat,
         ]);
-        return redirect('instansi')->with('success', 'Data Berhasil Ditambahkan!');
+        return redirect('jabatan')->with('success', 'Data Berhasil Ditambahkan!');
     }
 
     /**
@@ -62,7 +61,7 @@ class InstansiController extends Controller
      */
     public function edit($id)
     {
-        
+        //
     }
 
     /**
@@ -74,11 +73,10 @@ class InstansiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Instansi::where(['id' => $id])->update([
+        Jabatan::where(['id' => $id])->update([
             'nama'=> $request->nama,
-            'alamat'=> $request->alamat,
         ]);        
-        return redirect('instansi')->with('success', 'Data Berhasil Diupdate!');
+        return redirect('jabatan')->with('success', 'Data Berhasil Diupdate!');
     }
 
     /**
@@ -89,8 +87,8 @@ class InstansiController extends Controller
      */
     public function destroy($id)
     {
-        $instansi = Instansi::findorfail($id);
-        $instansi->delete();
+        $jabatan = Jabatan::findorfail($id);
+        $jabatan->delete();
         return back()->with('info', 'Data Berhasil Dihapus!');
     }
 }

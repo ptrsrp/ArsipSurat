@@ -1,7 +1,7 @@
 @extends('templates.default')
 
 @section('title')
-<h2 class="title">Mangelola Users</h2>
+<h2 class="title">Mangelola Bagian</h2>
 @endsection
 
 @section('content')
@@ -28,26 +28,22 @@
                                     Nama
                                 </th>
                                 <th>
-                                    Alamat
-                                </th>
-                                <th>
                                     Aksi
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $no = 0;?>
-                            @foreach ($users as $item)
+                            @foreach ($bagian as $item)
                             <?php $no++;?>
                             <tr>
                                 <td class="text-center">{{ $no }}</td>
                                 <td>{{ $item->nama }}</td>
-                                <td>{{ $item->alamat }}</td>
                                 <td class="text-center">
                                     <button type="submit" class="btn btn-warning btn-sm" data-toggle="modal"
                                         data-target="#editModal-{{ $item->id }}"><i
                                             class="material-icons">edit</i></button>
-                                    <a href="{{ route('hapus.users', $item->id) }}" class="btn btn-danger btn-sm"><i
+                                    <a href="{{ route('hapus.bagian', $item->id) }}" class="btn btn-danger btn-sm"><i
                                             class="material-icons">delete</i></a>
                                 </td>
                             </tr>
@@ -58,7 +54,7 @@
             </div>
             <div class="card-footer">
                 <div class="pagination justify-content-end">
-                    {{ $users->links()}}
+                    {{ $bagian->links()}}
                 </div>
             </div>
         </div>
@@ -75,22 +71,18 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><b>Tambah Data users</b></h5>
+                <h5 class="modal-title"><b>Tambah Data Bagian</b></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('simpan.users')}}" method="post">
+            <form action="{{route('simpan.bagian')}}" method="post">
                 @csrf
                 <div class="modal-body">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Nama</label>
                             <input type="text" class="form-control" name="nama">
-                        </div>
-                        <div class="form-group">
-                            <label>Alamat</label>
-                            <textarea class="form-control" rows="3" name="alamat"></textarea>
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
@@ -104,17 +96,17 @@
 </div>
 
 {{-- EDIT --}}
-@foreach ($users as $data)
+@foreach ($bagian as $data)
 <div class="modal fade" tabindex="-1" role="dialog" id="editModal-{{ $data->id }}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><b>Edit Data users</b></h5>
+                <h5 class="modal-title"><b>Edit Data bagian</b></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('update.users', $data->id)}}" method="post">
+            <form action="{{ route('update.bagian', $data->id)}}" method="post">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
@@ -126,10 +118,6 @@
                         <div class="form-group">
                             <label>Nama</label>
                             <input type="text" name="nama" class="form-control" value="{{$data->nama}}">
-                        </div>
-                        <div class="form-group">
-                            <label>Alamat</label>
-                            <input type="text" name="alamat" class="form-control" value="{{$data->alamat}}">
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">

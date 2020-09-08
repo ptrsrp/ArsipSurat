@@ -11,7 +11,7 @@
 |
 */
 Route::get('/', function () {
-    return 'Anda Tidak Punya Akses';
+    return redirect()->route('login');
 });
 
 // login
@@ -23,13 +23,23 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
     Route::get('/surat', 'HomeController@surat')->name('surat');
     
-    Route::get('/pegawai', 'HomeController@pegawai')->name('pegawai');
-    Route::get('/setting', 'HomeController@setting')->name('setting');
 
     //surat masuk
     Route::get('/surat-masuk', 'SuratMasukController@surat_masuk')->name('surat-masuk');
 
     //surat keluar
+
+    
+    //setting
+});
+
+
+Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
+    Route::get('/pegawai', 'HomeController@pegawai')->name('pegawai');
+    Route::get('/setting', 'HomeController@setting')->name('setting');
+
+    //USERS
+    Route::get('/users', 'HomeController@users')->name('users');
 
     //INSTANSI
     Route::get('/instansi', 'InstansiController@index')->name('instansi');
@@ -39,14 +49,17 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
 
     //pegawai
 
-    //bagian
+    //BAGIAN
+    Route::get('/bagian', 'BagianController@index')->name('bagian');
+    Route::post('/simpan-bagian', 'BagianController@store')->name('simpan.bagian');
+    Route::put('/update-bagian/{id}', 'BagianController@update')->name('update.bagian');
+    Route::get('/hapus-bagian/{id}', 'BagianController@destroy')->name('hapus.bagian');
 
-    //setting
-});
-
-
-Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
-    Route::get('/users', 'HomeController@users')->name('users');
+    //JABATAN 
+    Route::get('/jabatan', 'JabatanController@index')->name('jabatan');
+    Route::post('/simpan-jabatan', 'JabatanController@store')->name('simpan.jabatan');
+    Route::put('/update-jabatan/{id}', 'JabatanController@update')->name('update.jabatan');
+    Route::get('/hapus-jabatan/{id}', 'JabatanController@destroy')->name('hapus.jabatan');
 });
 
 

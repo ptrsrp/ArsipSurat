@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Instansi;
+use App\Bagian;
 use Illuminate\Http\Request;
 
-class InstansiController extends Controller
+class BagianController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class InstansiController extends Controller
      */
     public function index()
     {
-        $instansi = Instansi::paginate(5);
-        return view('halaman.instansi.index', compact('instansi'));
+        $bagian = Bagian::paginate(5);
+        return view('halaman.pegawai.bagian.index', compact('bagian'));
     }
 
     /**
@@ -25,7 +25,7 @@ class InstansiController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -36,11 +36,10 @@ class InstansiController extends Controller
      */
     public function store(Request $request)
     {
-        Instansi::create([
+        Bagian::create([
             'nama' => $request->nama,
-            'alamat' => $request->alamat,
         ]);
-        return redirect('instansi')->with('success', 'Data Berhasil Ditambahkan!');
+        return redirect('bagian')->with('success', 'Data Berhasil Ditambahkan!');
     }
 
     /**
@@ -74,11 +73,10 @@ class InstansiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Instansi::where(['id' => $id])->update([
+        Bagian::where(['id' => $id])->update([
             'nama'=> $request->nama,
-            'alamat'=> $request->alamat,
         ]);        
-        return redirect('instansi')->with('success', 'Data Berhasil Diupdate!');
+        return redirect('bagian')->with('success', 'Data Berhasil Diupdate!');
     }
 
     /**
@@ -89,8 +87,8 @@ class InstansiController extends Controller
      */
     public function destroy($id)
     {
-        $instansi = Instansi::findorfail($id);
-        $instansi->delete();
+        $bagian = Bagian::findorfail($id);
+        $bagian->delete();
         return back()->with('info', 'Data Berhasil Dihapus!');
     }
 }

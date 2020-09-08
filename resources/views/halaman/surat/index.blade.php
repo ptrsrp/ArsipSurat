@@ -39,7 +39,7 @@
             <div class="card card-stats">
                 <div class="card-header card-header-info card-header-icon">
                     <div class="card-icon">
-                        <i class="fa fa-tasks"></i>
+                        <i class="fa fa-file"></i>
                     </div>
                     <h3 class="card-title">Disposisi Surat</h3>
                 </div>
