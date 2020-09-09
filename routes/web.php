@@ -11,16 +11,18 @@
 |
 */
 Route::get('/', function () {
-    return redirect()->route('login');
+    return view('welcome');
 });
 
 // login
 Route::get('/login', 'LoginController@index')->name('login');
 Route::post('/postlogin', 'LoginController@postlogin')->name('postlogin');
+// logout
+Route::get('/logout', 'LoginController@logout')->name('logout');
 
 // validasi agar harus login dulu, tidak bisa masuk home sebelum login
 Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
-    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+    Route::get('/ArsipSurat', 'HomeController@index')->name('dashboard');
     Route::get('/surat', 'HomeController@surat')->name('surat');
     
 
@@ -39,7 +41,10 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::get('/setting', 'HomeController@setting')->name('setting');
 
     //USERS
-    Route::get('/users', 'HomeController@users')->name('users');
+    Route::get('/users', 'UserController@index')->name('users');
+    Route::post('/simpan-user', 'UserController@store')->name('simpan.user');
+    Route::put('/update-user/{id}', 'UserController@update')->name('update.user');
+    Route::get('/hapus-user/{id}', 'UserController@destroy')->name('hapus.user');
 
     //INSTANSI
     Route::get('/instansi', 'InstansiController@index')->name('instansi');
@@ -62,6 +67,3 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::get('/hapus-jabatan/{id}', 'JabatanController@destroy')->name('hapus.jabatan');
 });
 
-
-// logout
-Route::get('/logout', 'LoginController@logout')->name('logout');

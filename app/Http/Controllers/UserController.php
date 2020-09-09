@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -13,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::paginate(5);
+        return view('halaman.users.index', compact('user'));
     }
 
     /**
@@ -34,7 +38,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([
+            'name' => $request->name,
+            'level' => $request->level,
+            'username' => $request->username,
+            'password' => Hash::make($request['password']),
+            'remember_token' => Str::random(10)
+        ]);
+        return redirect()->route('users')->with('success','Data Berhasil Ditambahkan!');
     }
 
     /**
@@ -79,6 +90,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findorfail($id);
+        $user->delete();
+        return back()->with('info', 'Data Berhasil Dihapus!');
     }
 }

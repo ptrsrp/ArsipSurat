@@ -26,6 +26,7 @@
                     <p>Manajemen Surat</p>
                 </a>
             </li>
+            @if (auth()->user()->level=='admin')
             <li class="{{Request::is('instansi') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('instansi')}}">
                     <i class="material-icons">business</i>
@@ -38,7 +39,6 @@
                     <p>Manajemen Pegawai</p>
                 </a>
             </li>
-            @if (auth()->user()->level=='admin')
             <li class=" {{Request::is('users') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('users')}}">
                     <i class="material-icons">assignment_ind</i>

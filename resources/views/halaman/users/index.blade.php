@@ -28,7 +28,16 @@
                                     Nama
                                 </th>
                                 <th>
-                                    Alamat
+                                    Level
+                                </th>
+                                <th>
+                                    Username
+                                </th>
+                                <th>
+                                    Dibuat pada
+                                </th>
+                                <th>
+                                    Diupdate pada
                                 </th>
                                 <th>
                                     Aksi
@@ -37,17 +46,20 @@
                         </thead>
                         <tbody>
                             <?php $no = 0;?>
-                            @foreach ($users as $item)
+                            @foreach ($user as $item)
                             <?php $no++;?>
                             <tr>
                                 <td class="text-center">{{ $no }}</td>
-                                <td>{{ $item->nama }}</td>
-                                <td>{{ $item->alamat }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->level }}</td>
+                                <td>{{ $item->username }}</td>
+                                <td>{{ $item->created_at }}</td>
+                                <td>{{ $item->updatet_at }}</td>
                                 <td class="text-center">
                                     <button type="submit" class="btn btn-warning btn-sm" data-toggle="modal"
                                         data-target="#editModal-{{ $item->id }}"><i
                                             class="material-icons">edit</i></button>
-                                    <a href="{{ route('hapus.users', $item->id) }}" class="btn btn-danger btn-sm"><i
+                                    <a href="{{ route('hapus.user', $item->id) }}" class="btn btn-danger btn-sm"><i
                                             class="material-icons">delete</i></a>
                                 </td>
                             </tr>
@@ -58,7 +70,7 @@
             </div>
             <div class="card-footer">
                 <div class="pagination justify-content-end">
-                    {{ $users->links()}}
+                    {{ $user->links()}}
                 </div>
             </div>
         </div>
@@ -75,22 +87,34 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><b>Tambah Data users</b></h5>
+                <h5 class="modal-title"><b>Tambah Data User</b></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('simpan.users')}}" method="post">
+            <form action="{{route('simpan.user')}}" method="post">
                 @csrf
                 <div class="modal-body">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Nama</label>
-                            <input type="text" class="form-control" name="nama">
+                            <input type="text" class="form-control" name="name">
                         </div>
                         <div class="form-group">
-                            <label>Alamat</label>
-                            <textarea class="form-control" rows="3" name="alamat"></textarea>
+                            <label>Level</label>
+                            <select class="custom-select" name="level">
+                                <option selected>Pilih</option>
+                                <option value="admin">Admin</option>
+                                <option value="petugas">Petugas</option>
+                              </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password">
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">
@@ -104,17 +128,17 @@
 </div>
 
 {{-- EDIT --}}
-@foreach ($users as $data)
+@foreach ($user as $data)
 <div class="modal fade" tabindex="-1" role="dialog" id="editModal-{{ $data->id }}">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><b>Edit Data users</b></h5>
+                <h5 class="modal-title"><b>Edit Data User</b></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('update.users', $data->id)}}" method="post">
+            <form action="{{ route('update.user', $data->id)}}" method="post">
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
@@ -125,11 +149,19 @@
                         </div>
                         <div class="form-group">
                             <label>Nama</label>
-                            <input type="text" name="nama" class="form-control" value="{{$data->nama}}">
+                            <input type="text" name="name" class="form-control" value="{{$data->name}}">
                         </div>
                         <div class="form-group">
-                            <label>Alamat</label>
-                            <input type="text" name="alamat" class="form-control" value="{{$data->alamat}}">
+                            <label>Level</label>
+                            <input type="text" name="level" class="form-control" value="{{$data->level}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" name="username" class="form-control" value="{{$data->username}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" name="password" class="form-control" value="{{$data->password}}">
                         </div>
                     </div>
                     <div class="modal-footer bg-whitesmoke br">

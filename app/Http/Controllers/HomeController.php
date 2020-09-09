@@ -24,7 +24,7 @@ class HomeController extends Controller
         return view('halaman.pegawai.index');
     }
 
-    public function users(){
-        return view('halaman.users.index');
-    }
+    // public function users(){
+    //     return view('halaman.users.index');
+    // }
 }
