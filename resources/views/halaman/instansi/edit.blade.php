@@ -23,10 +23,20 @@
                 <div class="form-group">
                     <label>Nama</label>
                     <input type="text" name="nama" class="form-control" value="{{$instansi->nama}}">
+                    @if($errors->has('nama'))
+                            <div class="text-danger">
+                                {{ $errors->first('nama')}}
+                            </div>
+                            @endif
                 </div>
                 <div class="form-group">
                     <label>Alamat</label>
                     <textarea name="alamat" rows="3" class="form-control"> {{$instansi->alamat}} </textarea>
+                    @if($errors->has('alamat'))
+                            <div class="text-danger">
+                                {{ $errors->first('alamat')}}
+                            </div>
+                            @endif
                 </div>
                     <button type="submit" class="btn btn-success pull-right">Update</button>
             </form>

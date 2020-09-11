@@ -36,6 +36,13 @@ class InstansiController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'required' => ':attribute tidak boleh kosong!',
+        ];
+        $this->validate($request,[
+    		'nama' => 'required',
+    		'alamat' => 'required',
+        ],$messages); 
         Instansi::create([
             'nama' => $request->nama,
             'alamat' => $request->alamat,
@@ -75,6 +82,14 @@ class InstansiController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $messages = [
+            'required' => ':attribute tidak boleh kosong!',
+        ];
+        $this->validate($request,[
+    		'nama' => 'required',
+    		'alamat' => 'required',
+        ], $messages); 
+        
         Instansi::where(['id' => $id])->update([
             'nama'=> $request->nama,
             'alamat'=> $request->alamat,

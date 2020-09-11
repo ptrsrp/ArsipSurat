@@ -3,7 +3,7 @@
 @section('title')
 <div class="col-4">
     <a href="{{URL::previous()}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i> Back</a>
-  </div>
+</div>
 <h2 class="title">Edit Data jabatan</h2>
 @endsection
 
@@ -23,8 +23,13 @@
                 <div class="form-group">
                     <label>Nama</label>
                     <input type="text" name="nama" class="form-control" value="{{$jabatan->nama}}">
+                    @if($errors->has('nama'))
+                    <div class="text-danger">
+                        {{ $errors->first('nama')}}
+                    </div>
+                    @endif
                 </div>
-                    <button type="submit" class="btn btn-success pull-right">Update</button>
+                <button type="submit" class="btn btn-success pull-right">Update</button>
             </form>
         </div>
     </div>

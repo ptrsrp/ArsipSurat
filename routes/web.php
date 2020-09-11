@@ -46,9 +46,11 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
 
     //USERS
     Route::get('/users', 'UserController@index')->name('users');
+    Route::get('/tambah-user', 'UserController@create')->name('tambah.user');
     Route::post('/simpan-user', 'UserController@store')->name('simpan.user');
+    Route::get('/edit-user/{id}', 'UserController@edit')->name('edit.user');
     Route::put('/update-user/{id}', 'UserController@update')->name('update.user');
-    Route::get('/hapus-user/{id}', 'UserController@destroy')->name('hapus.user');
+    Route::delete('/hapus-user/{id}', 'UserController@destroy')->name('hapus.user');
 
     //INSTANSI
     Route::get('/instansi', 'InstansiController@index')->name('instansi');

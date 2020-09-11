@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('halaman.users.tambah');
     }
 
     /**
@@ -38,6 +38,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'required' => ':attribute tidak boleh kosong!',
+            'min' => ':attribute minimal 5 karakter!'
+        ];
+        $this->validate($request,[
+    		'name' => 'required',
+    		'level' => 'required',
+    		'username' => 'required',
+    		'password' => 'required|min:6',
+    	], $messages);
         User::create([
             'name' => $request->name,
             'level' => $request->level,
@@ -67,7 +77,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findorfail($id);
+        return view('halaman.users.edit', compact('user'));
     }
 
     /**
@@ -79,6 +90,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $messages = [
+            'required' => ':attribute tidak boleh kosong!',
+        ];
+        $this->validate($request,[
+    		'name' => 'required',
+    		'level' => 'required',
+    		'username' => 'required',
+    	],$messages);
         User::where(['id' => $id])->update([
             'name' => $request->name,
             'level' => $request->level,

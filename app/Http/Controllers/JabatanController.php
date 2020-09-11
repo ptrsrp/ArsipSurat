@@ -36,6 +36,13 @@ class JabatanController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'required' => ':attribute tidak boleh kosong!',
+        ];
+        $this->validate($request,[
+    		'nama' => 'required',
+        ], $messages); 
+
         Jabatan::create([
             'nama' => $request->nama,
         ]);
@@ -74,6 +81,12 @@ class JabatanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $messages = [
+            'required' => ':attribute tidak boleh kosong!',
+        ];
+        $this->validate($request,[
+    		'nama' => 'required',
+        ],$messages); 
         Jabatan::where(['id' => $id])->update([
             'nama'=> $request->nama,
         ]);        

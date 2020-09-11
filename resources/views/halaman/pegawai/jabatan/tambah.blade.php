@@ -15,6 +15,11 @@
                 <div class="form-group">
                     <label>Nama</label>
                     <input type="text" class="form-control" name="nama">
+                    @if($errors->has('nama'))
+                    <div class="text-danger">
+                        {{ $errors->first('nama')}}
+                    </div>
+                    @endif
                 </div>
                 <button type="submit" class="btn btn-success pull-right">Tambah</button>
             </form>

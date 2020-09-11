@@ -36,6 +36,12 @@ class BagianController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'required' => ':attribute tidak boleh kosong!',
+        ];
+        $this->validate($request,[
+    		'nama' => 'required',
+        ],$messages); 
         Bagian::create([
             'nama' => $request->nama,
         ]);
@@ -74,6 +80,13 @@ class BagianController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $messages = [
+            'required' => ':attribute tidak boleh kosong!',
+        ];
+        $this->validate($request,[
+    		'nama' => 'required',
+        ],$messages); 
+        
         Bagian::where(['id' => $id])->update([
             'nama'=> $request->nama,
         ]);        
