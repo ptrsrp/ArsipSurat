@@ -6,7 +6,7 @@
 @section('content')
 <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6">
-    <a class="card-link" href="{{route('surat-masuk')}}">
+        <a class="card-link" href="{{route('surat-masuk')}}">
             <div class="card card-stats">
                 <div class="card-header card-header-primary card-header-icon">
                     <div class="card-icon">
@@ -20,7 +20,7 @@
         </a>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6">
-        <a class="card-link" href="#">
+        <a class="card-link" href="{{route('surat-keluar')}}">
             <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                     <div class="card-icon">

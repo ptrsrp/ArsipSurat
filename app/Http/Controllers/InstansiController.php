@@ -25,7 +25,7 @@ class InstansiController extends Controller
      */
     public function create()
     {
-        
+        return view('halaman.instansi.tambah');
     }
 
     /**
@@ -62,7 +62,8 @@ class InstansiController extends Controller
      */
     public function edit($id)
     {
-        
+        $instansi = Instansi::findorfail($id);
+        return view('halaman.instansi.edit', compact('instansi'));
     }
 
     /**

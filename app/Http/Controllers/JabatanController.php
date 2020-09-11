@@ -25,7 +25,7 @@ class JabatanController extends Controller
      */
     public function create()
     {
-        //
+        return view('halaman.pegawai.jabatan.tambah');
     }
 
     /**
@@ -61,7 +61,8 @@ class JabatanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $jabatan = Jabatan::findorfail($id);
+        return view('halaman.jabatan.edit', compact('jabatan'));
     }
 
     /**

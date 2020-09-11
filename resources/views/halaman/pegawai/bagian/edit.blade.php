@@ -4,7 +4,7 @@
 <div class="col-4">
     <a href="{{URL::previous()}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i> Back</a>
   </div>
-<h2 class="title">Tambah Data Instansi</h2>
+<h2 class="title">Edit Data bagian</h2>
 @endsection
 
 @section('content')
@@ -13,17 +13,18 @@
         <div class="card-header">
         </div>
         <div class="card-body">
-            <form action="{{route('simpan.instansi')}}" method="post">
+            <form action="{{route('update.bagian',$bagian->id)}}" method="post">
                 @csrf
+                @method('PUT')
+                <div class="form-group">
+                    <label>ID</label>
+                    <input type="text" name="id" class="form-control" value="{{$bagian->id}}" readonly>
+                </div>
                 <div class="form-group">
                     <label>Nama</label>
-                    <input type="text" class="form-control" name="nama">
+                    <input type="text" name="nama" class="form-control" value="{{$bagian->nama}}">
                 </div>
-                <div class="form-group">
-                    <label>Alamat</label>
-                    <textarea class="form-control" rows="3" name="alamat"></textarea>
-                </div>
-                <button type="submit" class="btn btn-success pull-right">Tambah</button>
+                    <button type="submit" class="btn btn-success pull-right">Update</button>
             </form>
         </div>
     </div>

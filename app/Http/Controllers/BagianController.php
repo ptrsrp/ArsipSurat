@@ -25,7 +25,7 @@ class BagianController extends Controller
      */
     public function create()
     {
-        //
+        return view('halaman.pegawai.bagian.tambah');
     }
 
     /**
@@ -61,7 +61,8 @@ class BagianController extends Controller
      */
     public function edit($id)
     {
-        
+        $bagian = Bagian::findorfail($id);
+        return view('halaman.pegawai.bagian.edit', compact('bagian'));
     }
 
     /**

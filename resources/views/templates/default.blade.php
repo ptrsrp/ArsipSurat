@@ -30,7 +30,6 @@ The above copyright notice and this permission notice shall be included in all c
                   @yield('content')
                 </div>
             </div>
-            @yield('modal')
             <!-- Footer -->
             @include('templates.partials.footer')
             <!-- End Footer -->

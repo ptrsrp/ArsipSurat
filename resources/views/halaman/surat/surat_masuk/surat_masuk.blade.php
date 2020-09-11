@@ -1,6 +1,9 @@
 @extends('templates.default')
 
 @section('title')
+<div>
+  <a href="{{URL::previous()}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i> Kembali</a>
+</div>
 <h2 class="title">Surat Masuk</h2>
 @endsection
 @section('content')

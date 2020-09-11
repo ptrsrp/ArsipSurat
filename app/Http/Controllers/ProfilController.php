@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class ProfilController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::paginate(5);
-        return view('halaman.users.index', compact('user'));
+        return view('halaman.setting');
     }
 
     /**
@@ -38,14 +34,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create([
-            'name' => $request->name,
-            'level' => $request->level,
-            'username' => $request->username,
-            'password' => Hash::make($request['password']),
-            'remember_token' => Str::random(10)
-        ]);
-        return redirect()->route('users')->with('success','Data Berhasil Ditambahkan!');
+        //
     }
 
     /**
@@ -79,12 +68,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        User::where(['id' => $id])->update([
-            'name' => $request->name,
-            'level' => $request->level,
-            'username' => $request->username,
-        ]);
-        return redirect()->route('users')->with('success','Data Berhasil Diupdate!');
+        //
     }
 
     /**
@@ -95,9 +79,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findorfail($id);
-        $user->delete();
-        return back()->with('info', 'Data Berhasil Dihapus!');
+        //
     }
-
 }

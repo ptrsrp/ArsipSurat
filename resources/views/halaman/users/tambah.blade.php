@@ -1,9 +1,6 @@
 @extends('templates.default')
 
 @section('title')
-<div class="col-4">
-    <a href="{{URL::previous()}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i> Back</a>
-  </div>
 <h2 class="title">Tambah Data Instansi</h2>
 @endsection
 
@@ -24,6 +21,7 @@
                     <textarea class="form-control" rows="3" name="alamat"></textarea>
                 </div>
                 <button type="submit" class="btn btn-success pull-right">Tambah</button>
+                <div class="clearfix"></div>
             </form>
         </div>
     </div>

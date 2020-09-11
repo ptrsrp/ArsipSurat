@@ -20,7 +20,7 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="{{Request::is('surat') ? 'active' : ''}}">
+            <li class="{{Request::is('surat','surat-masuk','surat-keluar') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('surat')}}">
                     <i class="material-icons">mail_outline</i>
                     <p>Manajemen Surat</p>
