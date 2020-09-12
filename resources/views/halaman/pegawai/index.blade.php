@@ -7,7 +7,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-4">
-        <a class="card-link" href="#">
+        <a class="card-link" href="{{route('data.pegawai')}}">
             <div class="card card-stats">
                 <div class="card-header card-header-primary card-header-icon">
                     <div class="card-icon">

@@ -60,7 +60,12 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::put('/update-instansi/{id}', 'InstansiController@update')->name('update.instansi');
     Route::delete('/hapus-instansi/{id}', 'InstansiController@destroy')->name('hapus.instansi');
 
-    //pegawai
+    //PEGAWAI
+    Route::get('/data-pegawai', 'PegawaiController@index')->name('data.pegawai');
+    Route::get('/tambah-pegawai', 'PegawaiController@create')->name('tambah.pegawai');
+    Route::post('/simpan-pegawai', 'PegawaiController@store')->name('simpan.pegawai');
+    // Route::get('/edit-pegawai/{id}', 'PegawaiController@edit')->name('edit.pegawai');
+    // Route::put('/update-pegawai/{id}', 'PegawaiController@update')->name('update.pegawai');
 
     //BAGIAN
     Route::get('/bagian', 'BagianController@index')->name('bagian');

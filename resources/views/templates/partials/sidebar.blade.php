@@ -6,7 +6,7 @@
       Tip 2: you can also add an image using data-image tag-->
     <div class="logo">
         <div class="simple-text logo-normal">
-            Bag. Dukungan Umum
+            Arsip Surat
         </div>
         <div class="simple-text logo-normal">
             ({{auth()->user()->level}})
