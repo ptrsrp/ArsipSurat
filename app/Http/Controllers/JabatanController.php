@@ -69,7 +69,7 @@ class JabatanController extends Controller
     public function edit($id)
     {
         $jabatan = Jabatan::findorfail($id);
-        return view('halaman.jabatan.edit', compact('jabatan'));
+        return view('halaman.pegawai.jabatan.edit', compact('jabatan'));
     }
 
     /**

@@ -1,21 +1,21 @@
 @extends('templates.default')
 
 @section('title')
-<div class="col-4">
-    <a href="{{route('users')}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i> Kembali</a>
-</div>
-<h2 class="title">Edit Data User</h2>
+<h2 class="title">Pengaturan Akun</h2>
 @endsection
 
 @section('content')
 <div class="card">
     <div class="card-header">
+        <a href="{{route('profil.edit')}}" class="btn btn-outline-warning active"
+            style="background-color: orange; color:white">Edit Profil</a>
+        <a href="{{route('profil.password')}}" class="btn btn-outline-warning ">Ganti Password</a>
     </div>
     <div class="card-body">
-        <form action="{{ route('update.user', $user->id)}}" method="post">
-            @csrf
-            @method('PUT')
-            <div class="modal-body">
+        <div id="editprofil">
+            <form action="{{route('profil.update')}}" method="post">
+                @csrf
+                @method('PUT')
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>ID</label>
@@ -33,9 +33,8 @@
                     <div class="form-group">
                         <label>Level</label>
                         <select class="custom-select" name="level">
-                            <option value="admin" {{ $user->level== "admin" ? 'selected' : '' }}>Admin</option>
-                            <option value="petugas" {{ $user->level== "petugas" ? 'selected' : '' }}>Petugas
-                            </option>
+                            <option value="admin" {{ $user->level == "admin" ? 'selected' : '' }}>Admin</option>
+                            <option value="petugas" {{ $user->level == "petugas" ? 'selected' : '' }}>Petugas</option>
                         </select>
                         @if($errors->has('level'))
                         <div class="text-danger">
@@ -54,10 +53,10 @@
                     </div>
                 </div>
                 <div class="modal-footer bg-whitesmoke br">
-                    <button type="submit" class="btn btn-success">Update</button>
+                    <button type="submit" class="btn btn-success">Update Profil</button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
 @endsection

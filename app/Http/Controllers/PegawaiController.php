@@ -9,47 +9,30 @@ use Illuminate\Http\Request;
 
 class PegawaiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $pegawai = Pegawai::with('bagian','jabatan')->paginate(5);
-        return view('halaman.pegawai.data-pegawai', compact('pegawai'));
+        return view('halaman.pegawai.pegawaiData.index', compact('pegawai'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        $bagian = Bagian::all();
-        $jabatan = Jabatan::all();
-        return view('halaman.pegawai.tambah-pegawai', compact('bagian','jabatan'));
+        $bagian = Bagian::orderBy('nama','ASC')->get();;
+        $jabatan = Jabatan::orderBy('nama','ASC')->get();;
+        return view('halaman.pegawai.pegawaiData.tambah', compact('bagian','jabatan'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $messages = [
             'required' => ':attribute tidak boleh kosong!',
-            'min' => ':attribute minimal 9 karakter!',
-            'numeric' => ':attribute harus di isi angka!',
+            'unique' => ':attribute sudah ada!',
         ];
         $this->validate($request,[
-    		'nippos' => 'required',
+    		'nippos' => 'required|unique:pegawai',
     		'nama' => 'required',
-    		'bagian' => 'required',
-    		'jabatan' => 'required',
+    		'id_bagian' => 'required',
+    		'id_jabatan' => 'required',
     	], $messages);
         Pegawai::create([
             'nippos' => $request->nippos,
@@ -60,48 +43,39 @@ class PegawaiController extends Controller
         return redirect()->route('data.pegawai')->with('success','Data Berhasil Ditambahkan!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function edit($nippos)
     {
-        //
+        $bagian = Bagian::all();
+        $jabatan = Jabatan::all();
+        $pegawai = Pegawai::findorfail($nippos);
+        return view('halaman.pegawai.pegawaidata.edit', compact('pegawai','bagian','jabatan'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(Request $request, $nippos)
     {
-        //
+        $messages = [
+            'required' => ':attribute tidak boleh kosong!',
+            'unique' => ':attribute sudah ada!',
+        ];
+        $this->validate($request,[
+    		'nippos' => 'required|unique:pegawai',
+    		'nama' => 'required',
+    		'id_bagian' => 'required',
+    		'id_jabatan' => 'required',
+    	], $messages);
+        Pegawai::where(['nippos' => $nippos ])->update([
+            'nippos' => $request->nippos,
+            'nama' => $request->nama,
+            'id_bagian' => $request->id_bagian,
+            'id_jabatan' => $request->id_jabatan,
+        ]);
+        return redirect()->route('data.pegawai')->with('success','Data Berhasil Diubah!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function destroy($nippos)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $pegawai = Pegawai::findorfail($nippos);
+        $pegawai->delete();
+        return redirect()->route('data.pegawai')->with('info','Data Berhasil Dihapus!');
     }
 }

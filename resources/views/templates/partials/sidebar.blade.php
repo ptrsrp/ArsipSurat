@@ -1,5 +1,4 @@
-<div class="sidebar" data-color="orange" data-background-color="white"
-    data-image="{{asset('assets/img/pos.jpg')}}">
+<div class="sidebar" data-color="orange" data-background-color="white" data-image="{{asset('assets/img/pos.jpg')}}">
     <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -14,47 +13,48 @@
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-        <li class="{{Request::is('dashboard') ? 'active' : ''}}">
+            <li class="{{Request::is('ArsipSurat') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('dashboard')}}">
-                    <i class="material-icons">dashboard</i>
-                    <p>Dashboard</p>
+                    <i class="fas fa-columns"></i>
+                    <p>Home</p>
                 </a>
             </li>
             <li class="{{Request::is('surat','surat-masuk','surat-keluar') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('surat')}}">
-                    <i class="material-icons">mail_outline</i>
+                    <i class="fas fa-mail-bulk"></i>
                     <p>Manajemen Surat</p>
                 </a>
             </li>
             @if (auth()->user()->level=='admin')
-            <li class="{{Request::is('instansi') ? 'active' : ''}}">
+            <li class="{{Request::is('instansi','tambah-instansi') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('instansi')}}">
-                    <i class="material-icons">business</i>
+                    <i class="far fa-building"></i>
                     <p>Manajemen Instansi</p>
                 </a>
             </li>
-            <li class=" {{Request::is('pegawai') ? 'active' : ''}}">
+            <li
+                class=" {{Request::is('pegawai','bagian','jabatan','data-pegawai','tambah-pegawai','tambah-bagian','tambah-jabatan') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('pegawai')}}">
                     <i class="fa fa-users"></i>
                     <p>Manajemen Pegawai</p>
                 </a>
             </li>
-            <li class=" {{Request::is('users') ? 'active' : ''}}">
+            <li class=" {{Request::is('users','tambah-user') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('users')}}">
-                    <i class="material-icons">assignment_ind</i>
+                    <i class="fas fa-user-check"></i>
                     <p>Manajemen Users</p>
                 </a>
             </li>
             @endif
-            <li class="{{Request::is('setting') ? 'active' : ''}}">
-                <a class="nav-link" href="{{route('setting')}}">
-                    <i class="material-icons">settings</i>
+            <li class="{{Request::is('edit-profil','ganti-password') ? 'active' : ''}}">
+                <a class="nav-link" href="{{route('profil.edit')}}">
+                    <i class="fas fa-user-cog"></i>
                     <p>Pengaturan Akun</p>
                 </a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('logout')}}">
-                    <i class="material-icons">exit_to_app</i>
+                    <i class="fas fa-sign-out-alt"></i>
                     <p>Log Out</p>
                 </a>
             </li>

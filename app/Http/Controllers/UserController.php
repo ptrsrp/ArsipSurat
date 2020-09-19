@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -40,12 +41,13 @@ class UserController extends Controller
     {
         $messages = [
             'required' => ':attribute tidak boleh kosong!',
-            'min' => ':attribute minimal 5 karakter!'
+            'min' => ':attribute minimal 5 karakter!',
+            'unique' => ':attribute sudah ada!',
         ];
         $this->validate($request,[
     		'name' => 'required',
     		'level' => 'required',
-    		'username' => 'required',
+    		'username' => 'required|unique:user',
     		'password' => 'required|min:6',
     	], $messages);
         User::create([
@@ -53,7 +55,7 @@ class UserController extends Controller
             'level' => $request->level,
             'username' => $request->username,
             'password' => Hash::make($request['password']),
-            'remember_token' => Str::random(10)
+            'remember_token' => Str::random(10),
         ]);
         return redirect()->route('users')->with('success','Data Berhasil Ditambahkan!');
     }
@@ -92,11 +94,12 @@ class UserController extends Controller
     {
         $messages = [
             'required' => ':attribute tidak boleh kosong!',
+            'unique' => ':attribute sudah ada!',
         ];
         $this->validate($request,[
     		'name' => 'required',
     		'level' => 'required',
-    		'username' => 'required',
+    		'username' => 'required|unique:user',
     	],$messages);
         User::where(['id' => $id])->update([
             'name' => $request->name,
@@ -117,6 +120,11 @@ class UserController extends Controller
         $user = User::findorfail($id);
         $user->delete();
         return back()->with('info', 'Data Berhasil Dihapus!');
+    }
+
+    public function gantiPassword($id){
+        $user = User::findorfail($id);
+        return view('halaman.users.changePassword', compact('user'));
     }
 
 }

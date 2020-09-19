@@ -2,13 +2,12 @@
 
 @section('title')
 <div class="col-4">
-    <a href="{{URL::previous()}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i> Back</a>
+    <a href="{{route('bagian')}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i> Back</a>
 </div>
 <h2 class="title">Edit Data bagian</h2>
 @endsection
 
 @section('content')
-<div class="col-md-12">
     <div class="card">
         <div class="card-header">
         </div>
@@ -33,5 +32,4 @@
             </form>
         </div>
     </div>
-</div>
 @endsection

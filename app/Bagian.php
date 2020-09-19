@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Pegawai;
 use Illuminate\Database\Eloquent\Model;
 
 class Bagian extends Model
