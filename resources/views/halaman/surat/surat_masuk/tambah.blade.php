@@ -2,7 +2,7 @@
 
 @section('title')
 <div>
-    <a href="{{route('data.pegawai')}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i>
+    <a href="{{route('surat-masuk')}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i>
         Kembali</a>
 </div>
 <h2 class="title">Tambah Surat Masuk</h2>
@@ -17,7 +17,7 @@
             @csrf
             <div class="form-group">
                 <label>No. Agenda</label>
-                <input type="number" class="form-control" name="no_agenda">
+            <input type="text" class="form-control" name="no_agenda">
                 @if($errors->has('no_agenda'))
                 <div class="text-danger">
                     {{ $errors->first('no_agenda')}}
@@ -75,7 +75,8 @@
             </div>
             <div class="custom-file">
                 <label for="file">Pilih file yang ingin diupload</label>
-                <input type="file" class="form-control-file" id="file">
+                <p class="text text-warning">(Jika lebih dari satu file maka gunakan format pdf atau docx)</p>
+                <input type="file" class="form-control-file" id="file" name="file">
                 @if($errors->has('file'))
                 <div class="text-danger">
                     {{ $errors->first('file')}}

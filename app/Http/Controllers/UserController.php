@@ -47,7 +47,7 @@ class UserController extends Controller
         $this->validate($request,[
     		'name' => 'required',
     		'level' => 'required',
-    		'username' => 'required|unique:user',
+    		'username' => 'required|unique:users',
     		'password' => 'required|min:6',
     	], $messages);
         User::create([
@@ -99,7 +99,7 @@ class UserController extends Controller
         $this->validate($request,[
     		'name' => 'required',
     		'level' => 'required',
-    		'username' => 'required|unique:user',
+    		'username' => 'required|unique:users',
     	],$messages);
         User::where(['id' => $id])->update([
             'name' => $request->name,

@@ -31,12 +31,6 @@
                             Username
                         </th>
                         <th>
-                            Dibuat pada
-                        </th>
-                        <th>
-                            Diupdate pada
-                        </th>
-                        <th>
                             Aksi
                         </th>
                     </tr>
@@ -50,8 +44,6 @@
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->level }}</td>
                         <td>{{ $item->username }}</td>
-                        <td>{{ $item->created_at }}</td>
-                        <td>{{ $item->updated_at }}</td>
                         <td class="text-center">
                             <form action="{{ route('hapus.user', $item->id) }}" method="post"
                                 onsubmit="return confirm('Yakin Hapus Data?')">

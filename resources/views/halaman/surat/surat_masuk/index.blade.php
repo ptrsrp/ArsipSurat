@@ -1,6 +1,10 @@
 @extends('templates.default')
 
 @section('title')
+<div>
+    <a href="{{route('surat')}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i>
+        Kembali</a>
+</div>
 <h2 class="title">Mangelola Surat Masuk</h2>
 @endsection
 
@@ -58,16 +62,19 @@
                         <td class="text-center">{{ $no }}</td>
                         <td>{{ $item->no_agenda }}</td>
                         <td>{{ $item->tgl_diterima }}</td>
-                        <td>{{ $item->instansi->id }}</td>
+                        <td>{{ $item->instansi->nama }}</td>
                         <td>{{ $item->no_surat }}</td>
                         <td>{{ $item->tgl_surat }}</td>
                         <td>{{ $item->perihal }}</td>
-                        <td>{{ $item->file }}</td>
+                        <td>
+                            <a href="{{ url('storage/surat'.'/'.$item->file) }}">
+                                Lihat Dokumen</a>
+                        </td>
                         <td class="text-center">
-                            <form action="#" method="post" onsubmit="return confirm('Yakin Hapus Data?')">
+                            <form action="{{route('hapus.surat-masuk', $item->id)}}" method="post" onsubmit="return confirm('Yakin Hapus Data?')">
                                 @csrf
                                 @method('DELETE')
-                                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                            <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
                                 <button type="submit" class="btn btn-danger btn-sm"><i
                                         class="fa fa-trash-alt"></i></button>
                             </form>

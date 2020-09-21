@@ -15,6 +15,6 @@ class SuratMasuk extends Model
     ];
     public function instansi()
     {
-        return $this->belongsTo(Instansi::class, 'id');
+        return $this->belongsTo(Instansi::class, 'id_instansi');
     }
 }
