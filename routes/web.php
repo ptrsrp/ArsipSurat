@@ -45,8 +45,12 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
     Route::get('/surat-masuk', 'SuratMasukController@index')->name('surat-masuk');
     Route::get('/tambah-surat-masuk', 'SuratMasukController@create')->name('tambah.surat-masuk');
     Route::post('/simpan-surat-masuk', 'SuratMasukController@store')->name('simpan.surat-masuk');
+    Route::get('/edit-surat-masuk/{id}', 'SuratMasukController@edit')->name('edit.surat-masuk');
+    Route::put('/update-surat-masuk/{id}', 'SuratMasukController@update')->name('update.surat-masuk');
     Route::delete('/hapus-surat-masuk/{id}', 'SuratMasukController@destroy')->name('hapus.surat-masuk');
 
+    //disposisi
+    Route::get('/tambah-disposisi', 'DisposisiController@create')->name('tambah.disposisi');
     //surat keluar
     Route::get('/surat-keluar', 'SuratKeluarController@surat_keluar')->name('surat-keluar');
     

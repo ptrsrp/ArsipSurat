@@ -5,7 +5,7 @@
     <a href="{{route('surat-masuk')}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i>
         Kembali</a>
 </div>
-<h2 class="title">Tambah Surat Masuk</h2>
+<h2 class="title">Edit Data Surat Masuk</h2>
 @endsection
 
 @section('content')
@@ -13,11 +13,13 @@
     <div class="card-header">
     </div>
     <div class="card-body">
-        <form action="{{route('simpan.surat-masuk')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('update.surat-masuk', $surat_masuk->id)}}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="form-group">
                 <label>No. Agenda</label>
-                <input type="text" class="form-control" name="no_agenda" value="{{old('no_agenda')}}">
+                <input type="text" class="form-control" name="no_agenda"
+                    value="{{$surat_masuk->no_agenda ? : old('no_agenda')}}">
                 @if($errors->has('no_agenda'))
                 <div class="text-danger">
                     {{ $errors->first('no_agenda')}}
@@ -26,7 +28,8 @@
             </div>
             <div class="form-group">
                 <label>Tanggal Diterima</label>
-                <input type="date" class="form-control" name="tgl_diterima" value="{{old('tgl_diterima')}}">
+                <input type="date" class="form-control" name="tgl_diterima"
+                    value="{{$surat_masuk->tgl_diterima ? : old('tgl_diterima')}}">
                 @if($errors->has('tgl_diterima'))
                 <div class="text-danger">
                     {{ $errors->first('tgl_diterima')}}
@@ -37,7 +40,9 @@
                 <label>Instansi</label>
                 <select class="custom-select" name="id_instansi">
                     @foreach ($instansi as $data)
-                    <option value="{{$data->id}}" {{ old('id_instansi') == $data->id ? 'selected' : '' }}>{{$data->nama}}</option>
+                    <option value="{{$data->id}}" {{ $surat_masuk->id_instansi == $data->id ? 'selected' : '' }}>
+                        {{$data->nama}}
+                    </option>
                     @endforeach
                 </select>
                 @if($errors->has('id_instansi'))
@@ -48,7 +53,8 @@
             </div>
             <div class="form-group">
                 <label>No. Surat</label>
-                <input type="text" class="form-control" name="no_surat" value="{{old('no_surat')}}">
+                <input type="text" class="form-control" name="no_surat"
+                    value="{{$surat_masuk->no_surat ? : old('no_surat')}}">
                 @if($errors->has('no_surat'))
                 <div class="text-danger">
                     {{ $errors->first('no_surat')}}
@@ -57,7 +63,8 @@
             </div>
             <div class="form-group">
                 <label>Tanggal Surat</label>
-                <input type="date" class="form-control" name="tgl_surat" value="{{old('tgl_surat')}}">
+                <input type="date" class="form-control" name="tgl_surat"
+                    value="{{$surat_masuk->tgl_surat ? : old('tgl_surat')}}">
                 @if($errors->has('tgl_surat'))
                 <div class="text-danger">
                     {{ $errors->first('tgl_surat')}}
@@ -66,7 +73,8 @@
             </div>
             <div class="form-group">
                 <label>Perihal</label>
-                <input type="text" class="form-control" name="perihal" value="{{old('perihal')}}">
+                <input type="text" class="form-control" name="perihal"
+                    value="{{$surat_masuk->perihal ? : old('perihal')}}">
                 @if($errors->has('perihal'))
                 <div class="text-danger">
                     {{ $errors->first('perihal')}}
@@ -83,7 +91,7 @@
                 </div>
                 @endif
             </div>
-            <button type="submit" class="btn btn-success float-right">Simpan</button>
+            <button type="submit" class="btn btn-success pull-right">Update</button>
         </form>
     </div>
 </div>

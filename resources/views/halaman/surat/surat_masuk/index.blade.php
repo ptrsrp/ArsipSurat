@@ -15,8 +15,8 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Cari">
             <a type="button"><i class="fas fa-search"></i></a>
         </form>
-        <a href="{{route('tambah.surat-masuk')}}" class="btn btn-success float-right">Tambah <i
-                class="fa fa-plus"></i></a>
+        <a href="{{route('tambah.surat-masuk')}}" class="btn btn-success float-right"><i
+                class="fas fa-plus"></i>    <b>Tambah</b></a>
     </div>
     <div class="card-body">
         <div class="badge badge-primary pull-left" style="margin-bottom: 20px">Total Data :
@@ -67,16 +67,18 @@
                         <td>{{ $item->tgl_surat }}</td>
                         <td>{{ $item->perihal }}</td>
                         <td>
-                            <a href="{{ url('storage/surat'.'/'.$item->file) }}">
+                            <a href="{{ url('storage/arsip'.'/'.$item->file) }}" target="_blank">
                                 Lihat Dokumen</a>
                         </td>
                         <td class="text-center">
-                            <form action="{{route('hapus.surat-masuk', $item->id)}}" method="post" onsubmit="return confirm('Yakin Hapus Data?')">
+                            <form action="{{route('hapus.surat-masuk', $item->id)}}" method="post"
+                                onsubmit="return confirm('Yakin Hapus Data?')">
                                 @csrf
                                 @method('DELETE')
-                            <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                                <a href="{{route('edit.surat-masuk', $item->id)}}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                                 <button type="submit" class="btn btn-danger btn-sm"><i
-                                        class="fa fa-trash-alt"></i></button>
+                                        class="fas fa-trash-alt"></i></button>
+                                <a href="{{route('tambah.disposisi')}}" class="btn btn-info btn-sm"><i class="fas fa-arrow-right"></i>    <b>Disposisi</b></a>
                             </form>
                         </td>
                     </tr>
