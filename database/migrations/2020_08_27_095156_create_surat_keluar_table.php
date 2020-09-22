@@ -15,7 +15,6 @@ class CreateSuratKeluarTable extends Migration
     {
         Schema::create('surat_keluar', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('no_agenda');
             $table->date('tgl_kirim');
             $table->string('no_surat');
             $table->unsignedBigInteger('penerima');

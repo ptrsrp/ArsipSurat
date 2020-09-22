@@ -12,11 +12,11 @@ class SuratMasukController extends Controller
     public function index(){
         $surat_masuk = SuratMasuk::with('instansi')->orderBy('tgl_diterima', 'DESC');
         $surat_masuk = $surat_masuk->paginate(50);
-        return view('halaman.surat.surat_masuk.index', compact('surat_masuk'));
+        return view('halaman.surat.surat-masuk.index', compact('surat_masuk'));
     }
     public function create(){
         $instansi = Instansi::orderBy('nama','ASC')->get();
-        return view('halaman.surat.surat_masuk.tambah', compact('instansi'));
+        return view('halaman.surat.surat-masuk.tambah', compact('instansi'));
     }
 
     public function store(Request $request){
@@ -37,7 +37,7 @@ class SuratMasukController extends Controller
 
         $file = $request->file('file');
         $filename = time(). '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('storage/arsip'), $filename);
+        $file->move(public_path('storage/arsip/surat-masuk'), $filename);
 
         SuratMasuk::create([
             'no_agenda' => $request->no_agenda,
@@ -54,7 +54,7 @@ class SuratMasukController extends Controller
     public function edit($id){
         $instansi = Instansi::orderBy('nama','ASC')->get();
         $surat_masuk = SuratMasuk::findorfail($id);
-        return view('halaman.surat.surat_masuk.edit', compact('instansi','surat_masuk'));
+        return view('halaman.surat.surat-masuk.edit', compact('instansi','surat_masuk'));
     }
     public function update(Request $request, $id){
         $messages = [
@@ -74,12 +74,12 @@ class SuratMasukController extends Controller
         $surat_masuk = SuratMasuk::findorfail($id);
         if ($request->has('file') != '') {
             //hapus dahulu file lama
-            $fileLama = $surat_masuk->file;
-            File::delete('storage/arsip/'.$fileLama);
+            $file_lama = $surat_masuk->file;
+            File::delete('storage/arsip/surat-masuk/'.$file_lama);
 
             $file = $request->file('file');
             $filename = time(). '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('storage/arsip'), $filename);
+            $file->move(public_path('storage/arsip/surat-masuk'), $filename);
         }
         else{
             $filename = $surat_masuk->file;
@@ -98,7 +98,7 @@ class SuratMasukController extends Controller
     public function destroy($id){
         $surat_masuk = SuratMasuk::findorfail($id);
         //hapus file dari folder
-        File::delete('storage/arsip/'.$surat_masuk->file);
+        File::delete('storage/arsip/surat-masuk/'.$surat_masuk->file);
         //hapus data di database
         $surat_masuk->delete();
         return redirect()->route('surat-masuk')->with('info','Data Berhasil Dihapus!');

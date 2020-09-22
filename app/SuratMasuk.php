@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Instansi;
+use App\Disposisi;
 use Illuminate\Database\Eloquent\Model;
 
 class SuratMasuk extends Model
@@ -16,5 +17,9 @@ class SuratMasuk extends Model
     public function instansi()
     {
         return $this->belongsTo(Instansi::class, 'id_instansi');
+    }
+    public function disposisi()
+    {
+        return $this->hasMany(Disposisi::class);
     }
 }
