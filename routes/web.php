@@ -50,7 +50,13 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
     Route::delete('/hapus-surat-masuk/{id}', 'SuratMasukController@destroy')->name('hapus.surat-masuk');
 
     //disposisi
-    Route::get('/tambah-disposisi/{id}', 'DisposisiController@create')->name('tambah.disposisi');
+    Route::get('/disposisi', 'DisposisiController@index')->name('disposisi');
+    Route::get('/tambah-disposisi', 'DisposisiController@create')->name('tambah.disposisi');
+    Route::post('/simpan-disposisi', 'DisposisiController@store')->name('simpan.disposisi');
+    Route::get('/edit-disposisi/{id}', 'DisposisiController@edit')->name('edit.disposisi');
+    Route::put('/update-disposisi/{id}', 'DisposisiController@update')->name('update.disposisi');
+    Route::delete('/hapus-disposisi/{id}', 'DisposisiController@destroy')->name('hapus.disposisi');
+    
     //surat keluar
     Route::get('/surat-keluar', 'SuratKeluarController@index')->name('surat-keluar');
     Route::get('/tambah-surat-keluar', 'SuratKeluarController@create')->name('tambah.surat-keluar');

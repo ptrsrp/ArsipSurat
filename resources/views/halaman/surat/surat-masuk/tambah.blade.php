@@ -17,7 +17,7 @@
             @csrf
             <div class="form-group">
                 <label>No. Agenda</label>
-                <input type="text" class="form-control" name="no_agenda" value="{{old('no_agenda')}}">
+                <input type="number" class="form-control" name="no_agenda" value="{{old('no_agenda')}}">
                 @if($errors->has('no_agenda'))
                 <div class="text-danger">
                     {{ $errors->first('no_agenda')}}

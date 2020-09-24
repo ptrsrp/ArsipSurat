@@ -35,7 +35,7 @@
     </div>
 
     <div class="col-lg-3 col-md-6 col-sm-6">
-        <a class="card-link" href="#">
+        <a class="card-link" href="{{route('disposisi')}}">
             <div class="card card-stats">
                 <div class="card-header card-header-info card-header-icon">
                     <div class="card-icon">
@@ -55,7 +55,7 @@
                     <div class="card-icon">
                         <i class="fa fa-book"></i>
                     </div>
-                    <h3 class="card-title">Buku Agenda</h3>
+                    <h3 class="card-title">Laporan Surat</h3>
                 </div>
                 <div class="card-footer">
                 </div>

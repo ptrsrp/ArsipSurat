@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Pegawai;
+use App\Disposisi;
 use App\SuratMasuk;
 use Illuminate\Http\Request;
 
@@ -9,69 +11,69 @@ class DisposisiController extends Controller
 {
     public function index()
     {
-        //
+        $disposisi = Disposisi::with('surat_masuk','pegawai')->orderBy('nippos_pgw','ASC')->paginate(5);
+        return view('halaman.surat.disposisi.index',compact('disposisi'));
     }
 
     
-    public function create($id)
+    public function create()
     {
-        $surat_masuk = SuratMasuk::with('instansi')->findorfail($id);
-        return view('halaman.surat.disposisi.tambah-disposisi',compact('surat_masuk'));
+        $disposisi = Disposisi::with('surat_masuk','pegawai')->paginate(5);
+        $surat_masuk = SuratMasuk::orderBy('tgl_diterima','DESC')->get();
+        $pegawai = Pegawai::orderBy('nama','ASC')->get();
+        return view('halaman.surat.disposisi.tambah',compact('surat_masuk','disposisi','pegawai'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'required' => ':attribute tidak boleh kosong!',
+        ];
+        $this->validate($request,[
+            'id_surat_masuk' => 'required',
+            'nippos_pgw' => 'required',
+            'isi' => 'required'
+        ], $messages);
+
+        Disposisi::create([
+            'id_surat_masuk' => $request->id_surat_masuk,
+            'nippos_pgw' => $request->nippos_pgw,
+            'isi' => $request->isi,
+        ]);
+        return redirect()->route('disposisi')->with('success','Data Berhasil Ditambahkan!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $surat_masuk = SuratMasuk::orderBy('tgl_diterima','DESC')->get();
+        $pegawai = Pegawai::orderBy('nama','ASC')->get();
+        $disposisi = Disposisi::findorfail($id);
+        return view('halaman.surat.disposisi.edit',compact('disposisi','surat_masuk','pegawai'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $messages = [
+            'required' => ':attribute tidak boleh kosong!',
+        ];
+        $this->validate($request,[
+            'id_surat_masuk' => 'required',
+            'nippos_pgw' => 'required',
+            'isi' => 'required'
+        ], $messages);
+
+        Disposisi::where(['id' => $id])->update([
+            'id_surat_masuk' => $request->id_surat_masuk,
+            'nippos_pgw' => $request->nippos_pgw,
+            'isi' => $request->isi,
+        ]);
+        return redirect()->route('disposisi')->with('success','Data Berhasil Diubah!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $disposisi = Disposisi::findorfail($id);
+        $disposisi->delete();
+        return redirect()->route('disposisi')->with('info','Data Berhasil Dihapus!');
     }
 }

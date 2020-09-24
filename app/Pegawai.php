@@ -23,4 +23,8 @@ class Pegawai extends Model
     {
         return $this->belongsTo(Jabatan::class, 'id_jabatan');
     }
+    public function disposisi()
+    {
+        return $this->hasMany(Disposisi::class);
+    }
 }

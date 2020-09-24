@@ -17,8 +17,8 @@ class PegawaiController extends Controller
 
     public function create()
     {
-        $bagian = Bagian::orderBy('nama','ASC')->get();;
-        $jabatan = Jabatan::orderBy('nama','ASC')->get();;
+        $bagian = Bagian::orderBy('nama','ASC')->get();
+        $jabatan = Jabatan::orderBy('nama','ASC')->get();
         return view('halaman.pegawai.pegawaiData.tambah', compact('bagian','jabatan'));
     }
 
@@ -45,8 +45,8 @@ class PegawaiController extends Controller
 
     public function edit($nippos)
     {
-        $bagian = Bagian::all();
-        $jabatan = Jabatan::all();
+        $bagian = Bagian::orderBy('nama','ASC')->get();
+        $jabatan = Jabatan::orderBy('nama','ASC')->get();
         $pegawai = Pegawai::findorfail($nippos);
         return view('halaman.pegawai.pegawaidata.edit', compact('pegawai','bagian','jabatan'));
     }

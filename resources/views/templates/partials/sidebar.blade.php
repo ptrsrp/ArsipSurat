@@ -19,7 +19,10 @@
                     <p>Home</p>
                 </a>
             </li>
-            <li class="{{Request::is('surat','surat-masuk','surat-keluar') ? 'active' : ''}}">
+            <li class="{{Request::is('surat','surat-masuk','surat-keluar',
+                                        'tambah-surat-masuk','tambah-surat-keluar',
+                                        'disposisi','tambah-disposisi'
+                                        ) ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('surat')}}">
                     <i class="fas fa-mail-bulk"></i>
                     <p>Manajemen Surat</p>
