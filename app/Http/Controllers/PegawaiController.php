@@ -27,9 +27,11 @@ class PegawaiController extends Controller
         $messages = [
             'required' => ':attribute tidak boleh kosong!',
             'unique' => ':attribute sudah ada!',
+            'min' => ':attribute minimal 9 digit!',
+            'max' => ':attribute maksimal 9 digit!',
         ];
         $this->validate($request,[
-    		'nippos' => 'required|unique:pegawai',
+    		'nippos' => 'required|unique:pegawai|min:9|max:9',
     		'nama' => 'required',
     		'id_bagian' => 'required',
     		'id_jabatan' => 'required',

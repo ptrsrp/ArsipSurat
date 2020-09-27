@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DataTables;
 use App\Bagian;
 use Illuminate\Http\Request;
 
@@ -14,7 +14,8 @@ class BagianController extends Controller
      */
     public function index()
     {
-        $bagian = Bagian::paginate(5);
+        $bagian = Bagian::latest()->get();
+        Datatables::of($bagian);
         return view('halaman.pegawai.bagian.index', compact('bagian'));
     }
 

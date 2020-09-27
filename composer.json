@@ -12,7 +12,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.18.35",
         "laravel/tinker": "^2.0",
-        "realrashid/sweet-alert": "^3.1"
+        "realrashid/sweet-alert": "^3.1",
+        "yajra/laravel-datatables-oracle": "^9.11"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.4",

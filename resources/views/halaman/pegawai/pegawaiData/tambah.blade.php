@@ -17,7 +17,7 @@
             @csrf
             <div class="form-group">
                 <label>NIPPOS</label>
-                <input type="number" class="form-control" name="nippos">
+                <input type="number" class="form-control" name="nippos" value="{{old('nippos')}}">
                 @if($errors->has('nippos'))
                 <div class="text-danger">
                     {{ $errors->first('nippos')}}
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label>Nama</label>
-                <input type="text" class="form-control" name="nama">
+                <input type="text" class="form-control" name="nama" value="{{old('nama')}}">
                 @if($errors->has('nama'))
                 <div class="text-danger">
                     {{ $errors->first('nama')}}
@@ -37,7 +37,7 @@
                 <label>Bagian</label>
                 <select class="custom-select" name="id_bagian">
                     @foreach ($bagian as $bag)
-                    <option value="{{$bag->id}}">{{$bag->nama}}</option>
+                    <option value="{{$bag->id}}" {{old('id_bagian')== $bag->id ? 'selected' : ''}}>{{$bag->nama}}</option>
                     @endforeach
                 </select>
                 @if($errors->has('id_bagian'))
@@ -50,7 +50,7 @@
                 <label>Jabatan</label>
                 <select class="custom-select" name="id_jabatan">
                     @foreach ($jabatan as $jab)
-                    <option value="{{$jab->id}}">{{$jab->nama}}</option>
+                    <option value="{{$jab->id}}" {{old('id_jabatan')== $jab->id ? 'selected' : ''}}>{{$jab->nama}}</option>
                     @endforeach
                 </select>
                 @if($errors->has('id_jabatan'))
