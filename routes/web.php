@@ -43,6 +43,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
     Route::delete('/hapus-instansi/{id}', 'InstansiController@destroy')->name('hapus.instansi');
 
     //surat masuk
+    Route::get('/surat-masuk/json', 'SuratMasukController@json');
     Route::get('/surat-masuk', 'SuratMasukController@index')->name('surat-masuk');
     Route::get('/tambah-surat-masuk', 'SuratMasukController@create')->name('tambah.surat-masuk');
     Route::post('/simpan-surat-masuk', 'SuratMasukController@store')->name('simpan.surat-masuk');
@@ -51,6 +52,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
     Route::delete('/hapus-surat-masuk/{id}', 'SuratMasukController@destroy')->name('hapus.surat-masuk');
 
     //disposisi
+    Route::get('/disposisi/json', 'DisposisiController@json');
     Route::get('/disposisi', 'DisposisiController@index')->name('disposisi');
     Route::get('/tambah-disposisi', 'DisposisiController@create')->name('tambah.disposisi');
     Route::post('/simpan-disposisi', 'DisposisiController@store')->name('simpan.disposisi');
@@ -59,6 +61,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
     Route::delete('/hapus-disposisi/{id}', 'DisposisiController@destroy')->name('hapus.disposisi');
     
     //surat keluar
+    Route::get('/surat-keluar/json', 'SuratKeluarController@json');
     Route::get('/surat-keluar', 'SuratKeluarController@index')->name('surat-keluar');
     Route::get('/tambah-surat-keluar', 'SuratKeluarController@create')->name('tambah.surat-keluar');
     Route::post('/simpan-surat-keluar', 'SuratKeluarController@store')->name('simpan.surat-keluar');
@@ -83,6 +86,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
 
     //PEGAWAI
     Route::get('/pegawai', 'HomeController@pegawai')->name('pegawai');
+    Route::get('/data-pegawai/json', 'PegawaiController@json');
     Route::get('/data-pegawai', 'PegawaiController@index')->name('data.pegawai');
     Route::get('/tambah-pegawai', 'PegawaiController@create')->name('tambah.pegawai');
     Route::post('/simpan-pegawai', 'PegawaiController@store')->name('simpan.pegawai');

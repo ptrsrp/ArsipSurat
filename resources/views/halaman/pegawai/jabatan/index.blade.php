@@ -11,7 +11,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <a href="{{ route('tambah.jabatan')}}" class="btn btn-success float-right">Tambah <i class="fa fa-plus"></i></a>
+        <a href="{{ route('tambah.jabatan')}}" class="btn btn-success float-right"><i class="fas fa-plus"></i> <b>Tambah Data</b></a>
     </div>
     <div class="card-body">
         <table id="tabel_jabatan" class="table-striped table-bordered table-responsive-sm" style="width: 100%">

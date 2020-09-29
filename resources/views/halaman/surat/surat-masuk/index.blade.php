@@ -11,86 +11,86 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <form class="form-inline float-left">
-            <input class="form-control mr-sm-2" type="search" placeholder="Cari">
-            <a type="button"><i class="fas fa-search"></i></a>
-        </form>
-        <a href="{{route('tambah.surat-masuk')}}" class="btn btn-success float-right"><i
-                class="fas fa-plus"></i>    <b>Tambah</b></a>
+        <a href="{{route('tambah.surat-masuk')}}" class="btn btn-success float-right"><i class="fas fa-plus"></i>
+            <b>Tambah Data</b></a>
     </div>
     <div class="card-body">
-        <div class="badge badge-primary pull-left" style="margin-bottom: 20px">Total Data :
-            {{ $surat_masuk->total()}}</div>
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead class="text-center thead-light">
-                    <tr>
-                        <th>
-                            No.
-                        </th>
-                        <th>
-                            No. Agenda
-                        </th>
-                        <th>
-                            Tanggal Diterima
-                        </th>
-                        <th>
-                            Instansi
-                        </th>
-                        <th>
-                            No. Surat
-                        </th>
-                        <th>
-                            Tanggal Surat
-                        </th>
-                        <th>
-                            Perihal
-                        </th>
-                        <th>
-                            File
-                        </th>
-                        <th>
-                            Aksi
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $no = 0;?>
-                    @foreach ($surat_masuk as $item)
-                    <?php $no++;?>
-                    <tr>
-                        <td class="text-center">{{ $no }}</td>
-                        <td>{{ $item->no_agenda }}</td>
-                        <td>{{ $item->tgl_diterima }}</td>
-                        <td>{{ $item->instansi->nama }}</td>
-                        <td>{{ $item->no_surat }}</td>
-                        <td>{{ $item->tgl_surat }}</td>
-                        <td>{{ $item->perihal }}</td>
-                        <td>
-                            <a href="{{ url('storage/arsip/surat-masuk'.'/'.$item->file) }}" target="_blank">
-                                Lihat Dokumen</a>
-                        </td>
-                        <td class="text-center">
-                            <form action="{{route('hapus.surat-masuk', $item->id)}}" method="post"
-                                onsubmit="return confirm('Yakin Hapus Data?')">
-                                @csrf
-                                @method('DELETE')
-                                <a href="{{route('edit.surat-masuk', $item->id)}}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                <button type="submit" class="btn btn-danger btn-sm"><i
-                                        class="fas fa-trash-alt"></i></button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="card-footer">
-        <div class="pagination justify-content-end">
-            {{ $surat_masuk->links()}}
-        </div>
+        <table id="tabel_surat_masuk" class="table-striped table-bordered table-responsive-sm" style="width: 100%">
+            <thead class="text-center thead-light">
+                <tr>
+                    <th>
+                        No. Agenda
+                    </th>
+                    <th>
+                        Tanggal Diterima
+                    </th>
+                    <th>
+                        Instansi
+                    </th>
+                    <th>
+                        No. Surat
+                    </th>
+                    <th>
+                        Tanggal Surat
+                    </th>
+                    <th>
+                        Perihal
+                    </th>
+                    <th>
+                        File
+                    </th>
+                    <th>
+                        Aksi
+                    </th>
+                </tr>
+            </thead>
+        </table>
     </div>
 </div>
 @endsection
+@push('scripts')
+<script>
+    $(function () {
+        $('#tabel_surat_masuk').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ url('/surat-masuk/json') }}",
+            columns: [{
+                    data: 'no_agenda',
+                    name: 'no_agenda'
+                },
+                {
+                    data: 'tgl_diterima',
+                    name: 'tgl_diterima'
+                },
+                {
+                    data: 'instansi',
+                    name: 'instansi'
+                },
+                {
+                    data: 'no_surat',
+                    name: 'no_surat'
+                },
+                {
+                    data: 'tgl_surat',
+                    name: 'tgl_surat'
+                },
+                {
+                    data: 'perihal',
+                    name: 'perihal'
+                },
+                {
+                    data: 'file',
+                    name: 'file'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                }
+            ]
+        });
+    });
+</script>
+@endpush

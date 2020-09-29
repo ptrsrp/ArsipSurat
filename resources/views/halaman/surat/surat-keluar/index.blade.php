@@ -11,78 +11,72 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <form class="form-inline float-left">
-            <input class="form-control mr-sm-2" type="search" placeholder="Cari">
-            <a type="button"><i class="fas fa-search"></i></a>
-        </form>
-        <a href="{{route('tambah.surat-keluar')}}" class="btn btn-success float-right"><i
-                class="fas fa-plus"></i>    <b>Tambah</b></a>
+        <a href="{{route('tambah.surat-keluar')}}" class="btn btn-success float-right"><i class="fas fa-plus"></i>
+            <b>Tambah Data</b></a>
     </div>
     <div class="card-body">
-        <div class="badge badge-primary pull-left" style="margin-bottom: 20px">Total Data :
-            {{ $surat_keluar->total()}}</div>
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead class="text-center thead-light">
-                    <tr>
-                        <th>
-                            No.
-                        </th>
-                        <th>
-                            Tanggal Kirim
-                        </th>
-                        <th>
-                            Penerima
-                        </th>
-                        <th>
-                            No. Surat
-                        </th>
-                        <th>
-                            Perihal
-                        </th>
-                        <th>
-                            File
-                        </th>
-                        <th>
-                            Aksi
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $no = 0;?>
-                    @foreach ($surat_keluar as $item)
-                    <?php $no++;?>
-                    <tr>
-                        <td class="text-center">{{ $no }}</td>
-                        <td>{{ $item->tgl_kirim }}</td>
-                        <td>{{ $item->instansi->nama }}</td>
-                        <td>{{ $item->no_surat }}</td>
-                        <td>{{ $item->perihal }}</td>
-                        <td>
-                            <a href="{{ url('storage/arsip/surat-keluar'.'/'.$item->file) }}" target="_blank">
-                                Lihat Dokumen</a>
-                        </td>
-                        <td class="text-center">
-                            <form action="{{route('hapus.surat-keluar', $item->id)}}" method="post"
-                                onsubmit="return confirm('Yakin Hapus Data?')">
-                                @csrf
-                                @method('DELETE')
-                                <a href="{{route('edit.surat-keluar', $item->id)}}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                                <button type="submit" class="btn btn-danger btn-sm"><i
-                                        class="fas fa-trash-alt"></i></button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="card-footer">
-        <div class="pagination justify-content-end">
-            {{ $surat_keluar->links()}}
-        </div>
+        <table id="tabel_surat_keluar" class="table-striped table-bordered table-responsive-sm" style="width: 100%">
+            <thead class="text-center thead-light">
+                <tr>
+                    <th>
+                        Tanggal Kirim
+                    </th>
+                    <th>
+                        Penerima
+                    </th>
+                    <th>
+                        No. Surat
+                    </th>
+                    <th>
+                        Perihal
+                    </th>
+                    <th>
+                        File
+                    </th>
+                    <th>
+                        Aksi
+                    </th>
+                </tr>
+            </thead>
+        </table>
     </div>
 </div>
 @endsection
+@push('scripts')
+<script>
+    $(function () {
+        $('#tabel_surat_keluar').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ url('/surat-keluar/json') }}",
+            columns: [{
+                    data: 'tgl_kirim',
+                    name: 'tgl_kirim'
+                },
+                {
+                    data: 'penerima',
+                    name: 'penerima'
+                },
+                {
+                    data: 'no_surat',
+                    name: 'no_surat'
+                },
+                {
+                    data: 'perihal',
+                    name: 'perihal'
+                },
+                {
+                    data: 'file',
+                    name: 'file'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                }
+            ]
+        });
+    });
+</script>
+@endpush

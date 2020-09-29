@@ -11,73 +11,59 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <form class="form-inline float-left">
-            <input class="form-control mr-sm-2" type="search" placeholder="Cari">
-            <a type="button"><i class="fas fa-search"></i></a>
-        </form>
         <a href="{{route('tambah.disposisi')}}" class="btn btn-success float-right"><i class="fas fa-plus"></i>
-            <b>Tambah</b></a>
+            <b>Tambah Data</b></a>
     </div>
     <div class="card-body">
-        <div class="badge badge-primary pull-left" style="margin-bottom: 20px">Total Data :</div>
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead class="text-center thead-light">
-                    <tr>
-                        <th>
-                            No.
-                        </th>
-                        <th>
-                            Surat Masuk
-                        </th>
-                        <th>
-                            Tujuan Disposisi
-                        </th>
-                        <th>
-                            Isi
-                        </th>
-                        <th>
-                            Aksi
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $no = 0;?>
-                    @foreach ($disposisi as $item)
-                    <?php $no++;?>
-                    <tr>
-                        <td class="text-center">{{ $no }}</td>
-                        <td>
-                            <a href="{{ url('storage/arsip/surat-masuk'.'/'.$item->surat_masuk->file) }}"
-                                target="_blank">
-                                Lihat Dokumen</a>
-                        </td>
-                        <td>{{ $item->pegawai->nama }}</td>
-                        <td>{{ $item->isi }}</td>
-                        <td class="text-center">
-                            <form action="{{route('hapus.disposisi',$item->id)}}" method="post"
-                                onsubmit="return confirm('Yakin Hapus Data?')">
-                                @csrf
-                                @method('DELETE')
-                                <a href="#" class="btn btn-info btn-sm"><i
-                                    class="fas fa-eye"></i></a>
-                                <a href="{{route('edit.disposisi',$item->id)}}" class="btn btn-warning btn-sm"><i
-                                    class="fas fa-edit"></i></a>
-                                <button type="submit" class="btn btn-danger btn-sm"><i
-                                        class="fas fa-trash-alt"></i></button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="card-footer">
-        <div class="pagination justify-content-end">
-            {{ $disposisi->links()}}
-        </div>
+        <table id="tabel_disposisi" class="table-striped table-bordered table-responsive-sm" style="width: 100%">
+            <thead class="text-center thead-light">
+                <tr>
+                    <th>
+                        Surat Masuk
+                    </th>
+                    <th>
+                        Tujuan Disposisi
+                    </th>
+                    <th>
+                        Isi
+                    </th>
+                    <th>
+                        Aksi
+                    </th>
+                </tr>
+            </thead>
+        </table>
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    $(function () {
+        $('#tabel_disposisi').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ url('/disposisi/json') }}",
+            columns: [{
+                    data: 'id_surat_masuk',
+                    name: 'id_surat_masuk'
+                },
+                {
+                    data: 'nippos_pgw',
+                    name: 'nippos_pgw'
+                },
+                {
+                    data: 'isi',
+                    name: 'isi'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                }
+            ]
+        });
+    });
+</script>
+@endpush

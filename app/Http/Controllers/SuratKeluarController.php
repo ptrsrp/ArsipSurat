@@ -2,16 +2,30 @@
 
 namespace App\Http\Controllers;
 use File;
+use DataTables;
 use App\Instansi;
 use App\SuratKeluar;
 use Illuminate\Http\Request;
 
 class SuratKeluarController extends Controller
 {
+    public function json(){
+        $surat_keluar = SuratKeluar::with('instansi')->latest()->get();
+        return Datatables::of($surat_keluar)
+        ->addColumn('penerima', function($surat_keluar){
+            return $surat_keluar->instansi->nama;
+        })
+        ->addColumn('action', function ($surat_keluar) {
+            return '<form action="/hapus-surat-keluar/'.$surat_keluar->id.'" method="POST">'.csrf_field().' 
+            <input type="hidden" name="_method" value="DELETE" class="form-control">
+            <a href="/edit-surat-keluar/'.$surat_keluar->id.'" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></button></form>'; 
+            
+        })
+        ->make(true);
+    }
     public function index(){
-        $surat_keluar = SuratKeluar::with('instansi')->orderBy('tgl_kirim', 'DESC');
-        $surat_keluar = $surat_keluar->paginate(50);
-        return view('halaman.surat.surat-keluar.index',compact('surat_keluar'));
+        return view('halaman.surat.surat-keluar.index');
     }
     public function create(){
         $instansi = Instansi::orderBy('nama','ASC')->get();

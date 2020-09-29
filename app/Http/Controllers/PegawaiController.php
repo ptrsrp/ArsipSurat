@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DataTables;
 use App\Bagian;
 use App\Jabatan;
 use App\Pegawai;
@@ -9,10 +10,27 @@ use Illuminate\Http\Request;
 
 class PegawaiController extends Controller
 {
+    public function json(){
+        $pegawai = Pegawai::with('bagian', 'jabatan')->latest()->get();
+        return Datatables::of($pegawai)
+        ->addColumn('id_bagian', function($pegawai){
+            return $pegawai->bagian->nama;
+        })
+        ->addColumn('id_jabatan', function($pegawai){
+            return $pegawai->jabatan->nama;
+        })
+        ->addColumn('action', function ($pegawai) {
+            return '<form action="/hapus-pegawai/'.$pegawai->nippos.'" method="POST">'.csrf_field().' 
+            <input type="hidden" name="_method" value="DELETE" class="form-control">
+            <a href="/edit-pegawai/'.$pegawai->nippos.'" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></button></form>'; 
+            
+        })
+        ->make(true);
+    }
     public function index()
     {
-        $pegawai = Pegawai::with('bagian','jabatan')->paginate(5);
-        return view('halaman.pegawai.pegawaiData.index', compact('pegawai'));
+        return view('halaman.pegawai.pegawaiData.index');
     }
 
     public function create()

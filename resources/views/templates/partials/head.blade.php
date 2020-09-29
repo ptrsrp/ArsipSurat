@@ -16,4 +16,6 @@
     <script src="{{asset('assets/jquery/jquery.min.js')}}"></script>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/DataTables/datatables.css')}}">
     <script type="text/javascript" src="{{asset('assets/DataTables/datatables.min.js')}}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
 </head>
