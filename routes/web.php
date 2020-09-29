@@ -72,6 +72,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
 
 Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     //USERS
+    Route::get('/users/json', 'UserController@json');
     Route::get('/users', 'UserController@index')->name('users');
     Route::get('/tambah-user', 'UserController@create')->name('tambah.user');
     Route::post('/simpan-user', 'UserController@store')->name('simpan.user');
@@ -99,6 +100,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::delete('/hapus-bagian/{id}', 'BagianController@destroy')->name('hapus.bagian');
 
     //JABATAN 
+    Route::get('/jabatan/json', 'JabatanController@json');
     Route::get('/jabatan', 'JabatanController@index')->name('jabatan');
     Route::get('/tambah-jabatan', 'JabatanController@create')->name('tambah.jabatan');
     Route::post('/simpan-jabatan', 'JabatanController@store')->name('simpan.jabatan');

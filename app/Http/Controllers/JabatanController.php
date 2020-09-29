@@ -2,20 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use DataTables;
 use App\Jabatan;
 use Illuminate\Http\Request;
 
 class JabatanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function json()
+    {
+        $jabatan = Jabatan::latest()->get();
+        return Datatables::of($jabatan)
+        ->addColumn('action', function ($jabatan) {
+            return '<form action="/hapus-jabatan/'.$jabatan->id.'" method="POST">'.csrf_field().' 
+            <input type="hidden" name="_method" value="DELETE" class="form-control">
+            <a href="/edit-jabatan/'.$jabatan->id.'" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></button></form>'; 
+            
+        })
+        ->make(true);
+        
+    }
     public function index()
     {
-        $jabatan = Jabatan::paginate(5);
-        return view('halaman.pegawai.jabatan.index', compact('jabatan'));
+        return view('halaman.pegawai.jabatan.index');
     }
 
     /**

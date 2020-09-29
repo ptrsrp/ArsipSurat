@@ -11,55 +11,44 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <form class="form-inline float-left">
-            <input class="form-control mr-sm-2" type="search" placeholder="Cari">
-            <a type="button"><i class="fas fa-search"></i></a>
-        </form>
         <a href="{{ route('tambah.jabatan')}}" class="btn btn-success float-right">Tambah <i class="fa fa-plus"></i></a>
     </div>
     <div class="card-body">
-        <div class="badge badge-primary pull-left" style="margin-bottom: 20px">Total Data : {{ $jabatan->total()}}</div>
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead class="text-center thead-light">
-                    <tr>
-                        <th>
-                            No.
-                        </th>
-                        <th>
-                            Nama
-                        </th>
-                        <th>
-                            Aksi
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $no = 0;?>
-                    @foreach ($jabatan as $item)
-                    <?php $no++;?>
-                    <tr>
-                        <td class="text-center">{{ $no }}</td>
-                        <td>{{ $item->nama }}</td>
-                        <td class="text-center">
-                            <form action="{{ route('hapus.jabatan', $item->id) }}" method="post"
-                                onsubmit="return confirm('Yakin Hapus Data?')">
-                                @csrf
-                                @method('DELETE')
-                                <a href="{{ route('edit.jabatan', $item->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="card-footer">
-        <div class="pagination justify-content-end">
-            {{ $jabatan->links()}}
-        </div>
+        <table id="tabel_jabatan" class="table-striped table-bordered table-responsive-sm" style="width: 100%">
+            <thead class="text-center thead-light">
+                <tr>
+                    <th class="text-center">
+                        Nama
+                    </th>
+                    <th class="text-center">
+                        Aksi
+                    </th>
+                </tr>
+            </thead>
+        </table>
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    $(function () {
+        $('#tabel_jabatan').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ url('/jabatan/json') }}",
+            columns: [{
+                    data: 'nama',
+                    name: 'nama'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                }
+            ]
+        });
+    });
+</script>
+@endpush

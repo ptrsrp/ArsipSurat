@@ -2,23 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use DataTables;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function json()
+    {
+        $user = User::latest()->get();
+        return Datatables::of($user)
+        ->addColumn('action', function ($user) {
+            return '<form action="/hapus-user/'.$user->id.'" method="POST">'.csrf_field().' 
+            <input type="hidden" name="_method" value="DELETE" class="form-control">
+            <a href="/edit-user/'.$user->id.'" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></button></form>'; 
+            
+        })
+        ->make(true);
+        
+    }
     public function index()
     {
-        $user = User::paginate(5);
-        return view('halaman.users.index', compact('user'));
+        return view('halaman.users.index');
     }
 
     /**
