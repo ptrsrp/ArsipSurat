@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
     Route::post('/update-password', 'PasswordController@update')->name('ganti.password');
 
     //INSTANSI
+    Route::get('/instansi/json', 'InstansiController@json');
     Route::get('/instansi', 'InstansiController@index')->name('instansi');
     Route::get('/tambah-instansi', 'InstansiController@create')->name('tambah.instansi');
     Route::post('/simpan-instansi', 'InstansiController@store')->name('simpan.instansi');
@@ -89,6 +90,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::delete('/hapus-pegawai/{nippos}', 'PegawaiController@destroy')->name('hapus.pegawai');
 
     //BAGIAN
+    Route::get('/bagian/json', 'BagianController@json');
     Route::get('/bagian', 'BagianController@index')->name('bagian');
     Route::get('/tambah-bagian', 'BagianController@create')->name('tambah.bagian');
     Route::post('/simpan-bagian', 'BagianController@store')->name('simpan.bagian');

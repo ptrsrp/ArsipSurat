@@ -7,16 +7,22 @@ use Illuminate\Http\Request;
 
 class BagianController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function json()
     {
         $bagian = Bagian::latest()->get();
-        Datatables::of($bagian);
-        return view('halaman.pegawai.bagian.index', compact('bagian'));
+        return Datatables::of($bagian)
+        ->addColumn('action', function ($bagian) {
+            return '<form action="/hapus-bagian/'.$bagian->id.'" method="POST">'.csrf_field().' 
+            <input type="hidden" name="_method" value="DELETE" class="form-control">
+            <a href="/edit-bagian/'.$bagian->id.'" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></button></form>'; 
+            
+        })
+        ->make(true);
+        
+    }
+    public function index(){
+        return view('halaman.pegawai.bagian.index');
     }
 
     /**

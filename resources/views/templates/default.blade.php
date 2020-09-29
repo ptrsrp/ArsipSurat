@@ -37,7 +37,7 @@ The above copyright notice and this permission notice shall be included in all c
     </div>
     <!--   Core JS Files   -->
     @include('templates.partials.scripts')
-    @yield('js');
+    @stack('scripts');
     <!--   End Core JS Files   -->
     @include('sweetalert::alert')
 </body>

@@ -1,8 +1,8 @@
 @extends('templates.default')
 
 @section('title')
-<div class="col-4">
-    <a href="{{route('bagian')}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i> Back</a>
+<div>
+    <a href="{{route('bagian')}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i> Kembali</a>
 </div>
 <h2 class="title">Edit Data bagian</h2>
 @endsection
@@ -28,7 +28,7 @@
                     </div>
                     @endif
                 </div>
-                <button type="submit" class="btn btn-success pull-right">Update</button>
+                <button type="submit" class="btn btn-success pull-right"><b>Update</b></button>
             </form>
         </div>
     </div>
