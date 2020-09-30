@@ -7,25 +7,28 @@ use App\Pegawai;
 use App\Disposisi;
 use App\SuratMasuk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DisposisiController extends Controller
 {
     public function json(){
         $disposisi = Disposisi::with('surat_masuk','pegawai')->latest()->get();
         return Datatables::of($disposisi)
-        ->addColumn('id_surat_masuk', function($disposisi){
-            return $disposisi->surat_masuk->file;
+        ->editColumn('id_surat_masuk', function($disposisi){
+            $file = $disposisi->surat_masuk->file;
+                return '<a href="'.url('storage/arsip/surat-masuk/'.$file.'').'" target="_blank">
+                Lihat Dokumen</a>';
         })
-        ->addColumn('nippos_pgw', function($disposisi){
+        ->editColumn('nippos_pgw', function($disposisi){
             return $disposisi->pegawai->nama;
         })
         ->addColumn('action', function ($disposisi) {
-            return '<form action="/hapus-disposisi/'.$disposisi->id.'" method="POST">'.csrf_field().' 
-            <input type="hidden" name="_method" value="DELETE" class="form-control">
-            <a href="/edit-disposisi/'.$disposisi->id.'" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></button></form>'; 
-            
+            return "<form action='/hapus-disposisi/".$disposisi->id."' method='POST' >".csrf_field()." 
+            <input type='hidden' name='_method' value='DELETE' class='form-control'>
+            <a href='/edit-disposisi/".$disposisi->id."' class='btn btn-warning btn-sm'><i class='fas fa-edit'></i></a>
+            <button onclick='return confirm_delete()' type='submit' class='btn btn-danger btn-sm'><i class='fas fa-trash-alt'></i></button></form>";
         })
+        ->rawColumns(['id_surat_masuk','action'])
         ->make(true);
     }
     public function index()

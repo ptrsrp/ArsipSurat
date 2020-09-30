@@ -13,16 +13,22 @@ class SuratMasukController extends Controller
     public function json(){
         $surat_masuk = SuratMasuk::with('instansi')->latest()->get();
         return Datatables::of($surat_masuk)
-        ->addColumn('instansi', function($surat_masuk){
+        ->editColumn('file', function($surat_masuk){
+            $file = $surat_masuk->file;
+                return '<a href="'.url('storage/arsip/surat-masuk/'.$file.'').'" target="_blank">
+                Lihat Dokumen</a>';
+        })
+        ->editColumn('instansi', function($surat_masuk){
             return $surat_masuk->instansi->nama;
         })
         ->addColumn('action', function ($surat_masuk) {
             return '<form action="/hapus-surat-masuk/'.$surat_masuk->id.'" method="POST">'.csrf_field().' 
             <input type="hidden" name="_method" value="DELETE" class="form-control">
-            <a href="/edit-surat-masuk/'.$surat_masuk->id.'" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></button></form>'; 
+            <a href="/edit-surat-masuk/'.$surat_masuk->id.'" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+            <button type="submit" onclick="return confirm_delete()" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button></form>'; 
             
         })
+        ->rawColumns(['file','action'])
         ->make(true);
     }
     public function index(){

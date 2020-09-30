@@ -12,16 +12,22 @@ class SuratKeluarController extends Controller
     public function json(){
         $surat_keluar = SuratKeluar::with('instansi')->latest()->get();
         return Datatables::of($surat_keluar)
-        ->addColumn('penerima', function($surat_keluar){
+        ->editColumn('file', function($surat_keluar){
+            $file = $surat_keluar->file;
+                return '<a href="'.url('storage/arsip/surat-keluar/'.$file.'').'" target="_blank">
+                Lihat Dokumen</a>';
+        })
+        ->editColumn('penerima', function($surat_keluar){
             return $surat_keluar->instansi->nama;
         })
         ->addColumn('action', function ($surat_keluar) {
             return '<form action="/hapus-surat-keluar/'.$surat_keluar->id.'" method="POST">'.csrf_field().' 
             <input type="hidden" name="_method" value="DELETE" class="form-control">
-            <a href="/edit-surat-keluar/'.$surat_keluar->id.'" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></button></form>'; 
+            <a href="/edit-surat-keluar/'.$surat_keluar->id.'" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+            <button type="submit" onclick="return confirm_delete()" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button></form>'; 
             
         })
+        ->rawColumns(['file','action'])
         ->make(true);
     }
     public function index(){

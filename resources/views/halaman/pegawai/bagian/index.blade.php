@@ -46,10 +46,16 @@
                     data: 'action',
                     name: 'action',
                     orderable: false,
-                    searchable: false
+                    searchable: false,
+                    sClass: 'text-center'
                 }
             ]
         });
     });
+</script>
+<script>
+    function confirm_delete() {
+      return confirm('Apakah anda yakin untuk menghapus data ini ? ');
+    }
 </script>
 @endpush

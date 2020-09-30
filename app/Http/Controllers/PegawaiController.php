@@ -13,19 +13,20 @@ class PegawaiController extends Controller
     public function json(){
         $pegawai = Pegawai::with('bagian', 'jabatan')->latest()->get();
         return Datatables::of($pegawai)
-        ->addColumn('id_bagian', function($pegawai){
+        ->editColumn('id_bagian', function($pegawai){
             return $pegawai->bagian->nama;
         })
-        ->addColumn('id_jabatan', function($pegawai){
+        ->editColumn('id_jabatan', function($pegawai){
             return $pegawai->jabatan->nama;
         })
         ->addColumn('action', function ($pegawai) {
             return '<form action="/hapus-pegawai/'.$pegawai->nippos.'" method="POST">'.csrf_field().' 
             <input type="hidden" name="_method" value="DELETE" class="form-control">
             <a href="/edit-pegawai/'.$pegawai->nippos.'" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></button></form>'; 
+            <button type="submit" onclick="return confirm_delete()" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></button></form>'; 
             
         })
+        ->rawColumns(['action'])
         ->make(true);
     }
     public function index()

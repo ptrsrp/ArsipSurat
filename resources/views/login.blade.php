@@ -40,11 +40,15 @@
         <!-- /.login-logo -->
         <div class="login-box-body">
             <h2 class="login-box-msg"><b>Login</b></h2>
-
+            @if(Session::has('alert'))
+                <div class="alert alert-danger">
+                    <div>{{Session::get('alert')}}</div>
+                </div>
+            @endif
             <form action="{{ route('postlogin')}}" method="post">
                 @csrf
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control" name="username" placeholder="username">
+                    <input type="text" class="form-control" name="username" placeholder="Username">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">

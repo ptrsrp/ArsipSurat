@@ -15,7 +15,9 @@ class LoginController extends Controller
         if (Auth::attempt($request->only('username','password'))) {
             return redirect()->route('dashboard');
         }
-        return redirect()->route('login');
+        else{
+            return redirect()->route('login')->with('alert','Username atau Password, Salah !');
+        }
     }
 
     public function logout(Request $request){
