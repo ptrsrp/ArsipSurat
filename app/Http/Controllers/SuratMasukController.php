@@ -43,6 +43,7 @@ class SuratMasukController extends Controller
             })
             ->rawColumns(['file','action'])
             ->make(true);
+            return view('halaman.surat.surat-masuk.index');
         }
     }
     public function index(){

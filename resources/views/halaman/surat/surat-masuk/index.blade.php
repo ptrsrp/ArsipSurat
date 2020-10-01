@@ -15,11 +15,11 @@
             <div class="col-md-6">
                 <div class="row input-daterange">
                     <div class="col-md-4">
-                        <input type="input" name="from_date" id="from_date" class="form-control"
+                        <input type="text" name="from_date" id="from_date" class="form-control"
                             placeholder="Dari Tanggal" readonly />
                     </div>
                     <div class="col-md-4">
-                        <input type="input" name="to_date" id="to_date" class="form-control"
+                        <input type="text" name="to_date" id="to_date" class="form-control"
                             placeholder="Sampai Tanggal" readonly />
                     </div>
                     <div class="col-md-4">

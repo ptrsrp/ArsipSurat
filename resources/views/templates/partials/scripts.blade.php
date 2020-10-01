@@ -44,4 +44,4 @@
 <script src="{{asset('assets/jquery/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('assets/DataTables/datatables.min.js')}}"></script>
 <!-- DatePicker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+<script src="{{asset('assets/datepicker/dist/js/bootstrap-datepicker.js')}}"></script>
