@@ -1,7 +1,7 @@
 @extends('templates.default')
 
 @section('title')
-<div class="col-4">
+<div>
     <a href="{{route('users')}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i>
         Kembali</a>
 </div>
@@ -38,7 +38,7 @@
             </div>
             <div class="form-group">
                 <label>Username</label>
-                <input type="text" class="form-control" name="username">
+                <input type="text" class="form-control" name="username" value="{{old('username')}}">
                 @if($errors->has('username'))
                 <div class="text-danger">
                     {{ $errors->first('username')}}
@@ -47,14 +47,14 @@
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" name="password">
+                <input type="password" class="form-control" name="password" value="{{old('password')}}">
                 @if($errors->has('password'))
                 <div class="text-danger">
                     {{ $errors->first('password')}}
                 </div>
                 @endif
             </div>
-            <button type="submit" class="btn btn-success pull-right">Tambah</button>
+            <button type="submit" class="btn btn-success float-right">Simpan</button>
         </form>
     </div>
 </div>

@@ -40,3 +40,8 @@
 <script src="{{asset('assets/js/material-dashboard.js?v=2.1.2" type="text/javascript')}}"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{asset('assets/demo/demo.js')}}"></script>
+<!-- DataTables -->
+<script src="{{asset('assets/jquery/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/DataTables/datatables.min.js')}}"></script>
+<!-- DatePicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>

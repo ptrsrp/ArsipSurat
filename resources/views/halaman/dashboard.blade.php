@@ -4,11 +4,17 @@
 <h2 class="title">Bagian SDM & Dukungan Umum</h2>
 @endsection
 @section('content')
-<h3 style="text-align: center; text-transform:uppercase">Selamat Datang {{auth()->user()->name}} di Halaman {{auth()->user()->level}} <br>
-    Aplikasi Pengarsipan Surat Masuk dan Surat Keluar <br>
-    Kantor Pos Pati</h3>
-<div class="card">
-    <img src="{{asset('assets/img/pos.jpg')}}">
-
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header card-header-tabs card-header-warning">
+                <h4 class="card-title" style="text-transform:uppercase">Selamat Datang {{auth()->user()->name}}</h4>
+            </div>
+            <div class="card-body" style="text-transform:uppercase">
+                Anda Berada Di Dashboard {{auth()->user()->level}} 
+            </div>
+        </div>
+    </div>
+  </div>
 </div>
 @endsection

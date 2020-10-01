@@ -11,8 +11,26 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <a href="{{route('tambah.disposisi')}}" class="btn btn-success float-right"><i class="fas fa-plus"></i>
-            <b>Tambah Data</b></a>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row input date-range">
+                    <div class="col-md-4">
+                        <input type="input" name="from_date" id="from_date" class="form-control" placeholder="Dari Tanggal" readonly/>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="input" name="to_date" id="to_date" class="form-control" placeholder="Sampai Tanggal" readonly />
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" name="filter" id="filter" class="btn btn-primary btn-sm"><i class="fas fa-filter"></i></button>
+                        <button type="button" name="refresh" id="refresh" class="btn btn-default btn-sm"><i class="fas fa-sync"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <a href="{{route('tambah.disposisi')}}" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i><b>Tambah Data</b></a>
+                <a href="{{route('tambah.disposisi')}}" class="btn btn-success btn-sm float-right"><i class="fas fa-print"></i><b>Cetak Laporan</b></a>
+            </div>
+        </div>
     </div>
     <div class="card-body">
         <table id="tabel_disposisi" class="table-striped table-bordered table-responsive-sm" style="width: 100%">

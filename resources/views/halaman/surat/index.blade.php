@@ -5,7 +5,7 @@
 @endsection
 @section('content')
 <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="col-md-4">
         <a class="card-link" href="{{route('surat-masuk')}}">
             <div class="card card-stats">
                 <div class="card-header card-header-primary card-header-icon">
@@ -19,7 +19,7 @@
             </div>
         </a>
     </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="col-md-4">
         <a class="card-link" href="{{route('surat-keluar')}}">
             <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
@@ -34,7 +34,7 @@
         </a>
     </div>
 
-    <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="col-md-4">
         <a class="card-link" href="{{route('disposisi')}}">
             <div class="card card-stats">
                 <div class="card-header card-header-info card-header-icon">
@@ -42,20 +42,6 @@
                         <i class="fa fa-file"></i>
                     </div>
                     <h3 class="card-title">Disposisi Surat</h3>
-                </div>
-                <div class="card-footer">
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="col-lg-3 col-md-6 col-sm-6">
-        <a class="card-link" href="#">
-            <div class="card card-stats">
-                <div class="card-header card-header-danger card-header-icon">
-                    <div class="card-icon">
-                        <i class="fa fa-book"></i>
-                    </div>
-                    <h3 class="card-title">Laporan Surat</h3>
                 </div>
                 <div class="card-footer">
                 </div>

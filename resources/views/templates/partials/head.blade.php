@@ -8,16 +8,15 @@
     </title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     <!-- CSS Files -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{asset('assets/css/material-dashboard.css?v=2.1.2')}}" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{asset('assets/demo/demo.css')}}" rel="stylesheet" />
     <!-- FONT ICON -->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/fontawesome-free/css/all.min.css')}}">
     <!-- DataTables -->
-    <script src="{{asset('assets/jquery/jquery.min.js')}}"></script>
+    {{-- <script src="{{asset('assets/jquery/jquery.min.js')}}"></script> --}}
     <link rel="stylesheet" type="text/css" href="{{asset('assets/DataTables/datatables.css')}}">
-    <script type="text/javascript" src="{{asset('assets/DataTables/datatables.min.js')}}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
-</head>
+    {{-- <script type="text/javascript" src="{{asset('assets/DataTables/datatables.min.js')}}"></script> --}}
+    <!-- DatePicker -->
+    datepicker/dist/css/bootstrap-datepicker.css
+    <link rel="stylesheet" href="{{asset('assets/DataTables/datatables.css')}}" />

@@ -23,7 +23,7 @@
                 </div>
                 @endif
             </div>
-            <button type="submit" class="btn btn-success pull-right">Simpan</button>
+            <button type="submit" class="btn btn-success float-right">Simpan</button>
             <div class="clearfix"></div>
         </form>
     </div>

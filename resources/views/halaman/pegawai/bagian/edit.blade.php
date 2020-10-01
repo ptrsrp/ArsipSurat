@@ -28,7 +28,7 @@
                     </div>
                     @endif
                 </div>
-                <button type="submit" class="btn btn-success pull-right"><b>Update</b></button>
+                <button type="submit" class="btn btn-success float-right"><b>Update</b></button>
             </form>
         </div>
     </div>

@@ -16,7 +16,7 @@
             <li class="{{Request::is('ArsipSurat') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('dashboard')}}">
                     <i class="fas fa-columns"></i>
-                    <p>Home</p>
+                    <p>Dashboard</p>
                 </a>
             </li>
             <li class="{{Request::is('surat','surat-masuk','surat-keluar',

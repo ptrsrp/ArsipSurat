@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -16,7 +17,8 @@ class LoginController extends Controller
             return redirect()->route('dashboard');
         }
         else{
-            return redirect()->route('login')->with('alert','Username atau Password, Salah !');
+            Session::flash('error', 'Username atau Password Salah!');
+            return redirect()->route('login');
         }
     }
 

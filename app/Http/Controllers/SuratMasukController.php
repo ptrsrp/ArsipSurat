@@ -10,31 +10,43 @@ use Illuminate\Http\Request;
 
 class SuratMasukController extends Controller
 {
-    public function json(){
-        $surat_masuk = SuratMasuk::with('instansi')->latest()->get();
-        return Datatables::of($surat_masuk)
-        ->editColumn('file', function($surat_masuk){
-            $file = $surat_masuk->file;
-                return '<a href="'.url('storage/arsip/surat-masuk/'.$file.'').'" target="_blank">
-                Lihat Dokumen</a>';
-        })
-        ->editColumn('instansi', function($surat_masuk){
-            return $surat_masuk->instansi->nama;
-        })
-        ->addColumn('action', function ($surat_masuk) {
-            return '<form action="/hapus-surat-masuk/'.$surat_masuk->id.'" method="POST">'.csrf_field().' 
-            <input type="hidden" name="_method" value="DELETE" class="form-control">
-            <a href="/edit-surat-masuk/'.$surat_masuk->id.'" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-            <button type="submit" onclick="return confirm_delete()" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button></form>'; 
-            
-        })
-        ->rawColumns(['file','action'])
-        ->make(true);
+    public function json(Request $request){
+        if ($request->ajax()) {
+            if(!empty($request->from_date))
+            {
+                if ($request->from_date === $request->to_date) 
+                {
+                    $surat_masuk = SuratMasuk::with('instansi')->whereDate('tgl_diterima','=',$request->from_date)->get();
+                }
+                else{
+                    $surat_masuk = SuratMasuk::with('instansi')->whereBetween('tgl_diterima', array($request->from_date, $request->to_date))->get();
+                }
+            }
+            else{
+                $surat_masuk = SuratMasuk::with('instansi')->latest()->get();
+            }    
+            return Datatables::of($surat_masuk)
+            ->editColumn('file', function($surat_masuk){
+                $file = $surat_masuk->file;
+                    return '<a href="'.url('storage/arsip/surat-masuk/'.$file.'').'" target="_blank">
+                    Lihat Dokumen</a>';
+            })
+            ->editColumn('instansi', function($surat_masuk){
+                return $surat_masuk->instansi->nama;
+            })
+            ->addColumn('action', function ($surat_masuk) {
+                return '<form action="/hapus-surat-masuk/'.$surat_masuk->id.'" method="POST">'.csrf_field().' 
+                <input type="hidden" name="_method" value="DELETE" class="form-control">
+                <a href="/edit-surat-masuk/'.$surat_masuk->id.'" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                <button type="submit" onclick="return confirm_delete()" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button></form>'; 
+                
+            })
+            ->rawColumns(['file','action'])
+            ->make(true);
+        }
     }
     public function index(){
-        $surat_masuk = SuratMasuk::with('instansi')->orderBy('tgl_diterima', 'DESC');
-        $surat_masuk = $surat_masuk->paginate(50);
-        return view('halaman.surat.surat-masuk.index', compact('surat_masuk'));
+        return view('halaman.surat.surat-masuk.index');
     }
     public function create(){
         $instansi = Instansi::orderBy('nama','ASC')->get();

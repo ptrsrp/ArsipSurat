@@ -1,6 +1,10 @@
 @extends('templates.default')
 
 @section('title')
+<div>
+    <a href="{{route('users')}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i>
+        Kembali</a>
+</div>
 <h2 class="title">Mangelola Users</h2>
 @endsection
 
@@ -22,6 +26,12 @@
                     </th>
                     <th class="text-center">
                         Level
+                    </th>
+                    <th class="text-center">
+                        Dibuat Pada
+                    </th>
+                    <th class="text-center">
+                        Diupdate pada
                     </th>
                     <th class="text-center">
                         Aksi
@@ -51,6 +61,14 @@
                 {
                     data: 'level',
                     name: 'level'
+                },
+                {
+                    data: 'created_at',
+                    name: 'created_at'
+                },
+                {
+                    data: 'updated_at',
+                    name: 'updated_at'
                 },
                 {
                     data: 'action',
