@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use PDF;
 use DataTables;
 use App\Pegawai;
 use App\Disposisi;
@@ -16,7 +16,7 @@ class DisposisiController extends Controller
         return Datatables::of($disposisi)
         ->editColumn('id_surat_masuk', function($disposisi){
             $file = $disposisi->surat_masuk->file;
-                return '<a href="'.url('storage/arsip/surat-masuk/'.$file.'').'" target="_blank">
+                return ''.$disposisi->surat_masuk->no_surat.' <br> <a href="'.url('storage/arsip/surat-masuk/'.$file.'').'" target="_blank">
                 Lihat Dokumen</a>';
         })
         ->editColumn('nippos_pgw', function($disposisi){
@@ -25,6 +25,7 @@ class DisposisiController extends Controller
         ->addColumn('action', function ($disposisi) {
             return "<form action='/hapus-disposisi/".$disposisi->id."' method='POST' >".csrf_field()." 
             <input type='hidden' name='_method' value='DELETE' class='form-control'>
+            <a href='/cetak-disposisi/".$disposisi->id."' class='btn btn-info btn-sm'><i class='fas fa-eye'></i></a>
             <a href='/edit-disposisi/".$disposisi->id."' class='btn btn-warning btn-sm'><i class='fas fa-edit'></i></a>
             <button onclick='return confirm_delete()' type='submit' class='btn btn-danger btn-sm'><i class='fas fa-trash-alt'></i></button></form>";
         })
@@ -97,4 +98,10 @@ class DisposisiController extends Controller
         $disposisi->delete();
         return redirect()->route('disposisi')->with('info','Data Berhasil Dihapus!');
     }
+    public function cetak($id)
+    {
+        $disposisi = Disposisi::findorfail($id);
+        return view('halaman.surat.disposisi.cetak',compact('disposisi'));
+    }
+
 }

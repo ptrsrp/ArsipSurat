@@ -14,8 +14,6 @@
         <div class="col-md-14">
             <a href="{{route('tambah.disposisi')}}" class="btn btn-success btn-sm float-right"><i
                     class="fas fa-plus"></i><b>Tambah Data</b></a>
-            <a href="#" class="btn btn-success btn-sm float-right"><i
-                    class="fas fa-print"></i><b>Cetak Laporan</b></a>
         </div>
     </div>
     <div class="card-body">

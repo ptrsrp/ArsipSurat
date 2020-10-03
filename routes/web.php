@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
     Route::get('/edit-disposisi/{id}', 'DisposisiController@edit')->name('edit.disposisi');
     Route::put('/update-disposisi/{id}', 'DisposisiController@update')->name('update.disposisi');
     Route::delete('/hapus-disposisi/{id}', 'DisposisiController@destroy')->name('hapus.disposisi');
+    Route::get('/cetak-disposisi/{id}', 'DisposisiController@cetak')->name('cetak.disposisi');
     
     //surat keluar
     Route::get('/surat-keluar/json', 'SuratKeluarController@json');

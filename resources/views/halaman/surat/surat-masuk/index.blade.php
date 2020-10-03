@@ -15,7 +15,7 @@
             <a href="{{route('tambah.surat-masuk')}}" class="btn btn-success btn-sm float-right"><i
                     class="fas fa-plus"></i> <b>Tambah Data</b></a>
             <a href="{{route('periode.surat-masuk')}}" class="btn btn-success btn-sm float-right"><i
-                    class="fas fa-print"></i> <b> Cetak Per Periode</b></a>
+                    class="fas fa-eye"></i> <b> Laporan Per Periode</b></a>
         </div>
     </div>
     <div class="card-body">

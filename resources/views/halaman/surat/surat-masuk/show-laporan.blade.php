@@ -7,14 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- CSS Files -->
     <link href="{{asset('assets/css/material-dashboard.css?v=2.1.2')}}" rel="stylesheet" />
+    <!-- FONT ICON -->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/fontawesome-free/css/all.min.css')}}">
 </head>
 
 <body>
     <h2 align="center"><b>Laporan Surat Masuk</b></h2>
     <br>
     <center>
-        <a href="/cetak-pdf-surat-masuk" class="btn btn-primary btn-sm" target="_blank"> <b>Cetak PDF</b></a>
-        <a href="/cetak-excel-surat-masuk" class="btn btn-primary btn-sm" target="_blank"> <b>Cetak Excel</b></a>
+        <a href="/cetak-pdf-surat-masuk" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i> <b>Cetak PDF</b></a>
+        <a href="/cetak-excel-surat-masuk" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i> <b>Cetak Excel</b></a>
     </center>
 
     <br>
