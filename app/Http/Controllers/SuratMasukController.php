@@ -1,30 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
+use PDF;
 use File;
 use DataTables;
 use App\Instansi;
 use App\SuratMasuk;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Exports\SuratMasukReport;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Session;
 
 class SuratMasukController extends Controller
 {
     public function json(Request $request){
-        if ($request->ajax()) {
-            if(!empty($request->from_date))
-            {
-                if ($request->from_date === $request->to_date) 
-                {
-                    $surat_masuk = SuratMasuk::with('instansi')->whereDate('tgl_diterima','=',$request->from_date)->get();
-                }
-                else{
-                    $surat_masuk = SuratMasuk::with('instansi')->whereBetween('tgl_diterima', array($request->from_date, $request->to_date))->get();
-                }
-            }
-            else{
-                $surat_masuk = SuratMasuk::with('instansi')->latest()->get();
-            }    
+            $surat_masuk = SuratMasuk::with('instansi')->latest()->get();
             return Datatables::of($surat_masuk)
             ->editColumn('file', function($surat_masuk){
                 $file = $surat_masuk->file;
@@ -39,12 +29,9 @@ class SuratMasukController extends Controller
                 <input type="hidden" name="_method" value="DELETE" class="form-control">
                 <a href="/edit-surat-masuk/'.$surat_masuk->id.'" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
                 <button type="submit" onclick="return confirm_delete()" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button></form>'; 
-                
             })
             ->rawColumns(['file','action'])
             ->make(true);
-            return view('halaman.surat.surat-masuk.index');
-        }
     }
     public function index(){
         return view('halaman.surat.surat-masuk.index');
@@ -137,6 +124,21 @@ class SuratMasukController extends Controller
         //hapus data di database
         $surat_masuk->delete();
         return redirect()->route('surat-masuk')->with('info','Data Berhasil Dihapus!');
+    }
+    public function periode(){
+        return view('halaman.surat.surat-masuk.periode-surat');
+    }
+    public function show($tgl_awal,$tgl_akhir){
+        $surat_masuk = SuratMasuk::with('instansi')->whereBetween('tgl_diterima',[$tgl_awal,$tgl_akhir])->orderBy('tgl_diterima','ASC')->get();
+        return view('halaman.surat.surat-masuk.show-laporan',compact('surat_masuk','tgl_awal','tgl_akhir'));
+    }
+    public function cetakPDF(){
+        $surat_masuk = SuratMasuk::with('instansi')->orderBy('tgl_diterima','ASC')->get();
+        $pdf = PDF::loadview('halaman.surat.surat-masuk.cetak',compact('surat_masuk'));
+        return $pdf->download('laporan-surat-masuk-pdf');
+    }
+    public function cetakExcel(){
+        return Excel::download(new SuratMasukReport, 'laporan-surat-masuk-excel.xlsx');
     }
     
 }

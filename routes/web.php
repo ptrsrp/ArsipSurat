@@ -50,6 +50,10 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
     Route::get('/edit-surat-masuk/{id}', 'SuratMasukController@edit')->name('edit.surat-masuk');
     Route::put('/update-surat-masuk/{id}', 'SuratMasukController@update')->name('update.surat-masuk');
     Route::delete('/hapus-surat-masuk/{id}', 'SuratMasukController@destroy')->name('hapus.surat-masuk');
+    Route::get('/periode-surat-masuk', 'SuratMasukController@periode')->name('periode.surat-masuk');
+    Route::get('/show-surat-masuk/{tgl_awal}/{tgl_akhir}', 'SuratMasukController@show');
+    Route::get('/cetak-pdf-surat-masuk', 'SuratMasukController@cetakPDF');
+    Route::get('/cetak-excel-surat-masuk', 'SuratMasukController@cetakExcel');
 
     //disposisi
     Route::get('/disposisi/json', 'DisposisiController@json');
@@ -68,6 +72,10 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
     Route::get('/edit-surat-keluar/{id}', 'SuratKeluarController@edit')->name('edit.surat-keluar');
     Route::put('/update-surat-keluar/{id}', 'SuratKeluarController@update')->name('update.surat-keluar');
     Route::delete('/hapus-surat-keluar/{id}', 'SuratKeluarController@destroy')->name('hapus.surat-keluar');
+    Route::get('/periode-surat-keluar', 'SuratKeluarController@periode')->name('periode.surat-keluar');
+    Route::get('/show-surat-keluar/{tgl_awal}/{tgl_akhir}', 'SuratKeluarController@show');
+    Route::get('/cetak-pdf-surat-keluar', 'SuratKeluarController@cetakPDF');
+    Route::get('/cetak-excel-surat-keluar', 'SuratKeluarController@cetakExcel');
 
     
 });

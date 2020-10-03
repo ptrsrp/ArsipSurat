@@ -11,7 +11,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <a href="{{ route('tambah.user')}}" class="btn btn-success btn-md float-right"><i
+        <a href="{{ route('tambah.user')}}" class="btn btn-success btn-sm float-right"><i
                 class="fa fa-user-plus"></i></a>
     </div>
     <div class="card-body">

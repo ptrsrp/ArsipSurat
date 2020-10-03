@@ -11,7 +11,7 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Cari">
             <a type="button"><i class="fas fa-search"></i></a>
         </form>
-        <a href="{{ route('tambah.instansi')}}" class="btn btn-success float-right"><b>Tambah Data</b></a>
+        <a href="{{ route('tambah.instansi')}}" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i><b>Tambah Data</b></a>
     </div>
     <div class="card-body">
         <table id="tabel_instansi" class="table-striped table-bordered table-responsive-sm" style="width: 100%">

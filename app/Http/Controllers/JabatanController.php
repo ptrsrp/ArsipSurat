@@ -15,8 +15,8 @@ class JabatanController extends Controller
         ->addColumn('action', function ($jabatan) {
             return '<form action="/hapus-jabatan/'.$jabatan->id.'" method="POST">'.csrf_field().' 
             <input type="hidden" name="_method" value="DELETE" class="form-control">
-            <a href="/edit-jabatan/'.$jabatan->id.'" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-            <button type="submit" onclick="return confirm_delete()" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></button></form>'; 
+            <a href="/edit-jabatan/'.$jabatan->id.'" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+            <button type="submit" onclick="return confirm_delete()" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button></form>'; 
         })
         ->rawColumns(['action'])
         ->make(true);

@@ -17,5 +17,3 @@
     {{-- <script src="{{asset('assets/jquery/jquery.min.js')}}"></script> --}}
     <link rel="stylesheet" type="text/css" href="{{asset('assets/DataTables/datatables.css')}}">
     {{-- <script type="text/javascript" src="{{asset('assets/DataTables/datatables.min.js')}}"></script> --}}
-    <!-- DatePicker -->
-    <link rel="stylesheet" href="{{asset('assets/datepicker/dist/css/bootstrap-datepicker.css')}}" />

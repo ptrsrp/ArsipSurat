@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use PDF;
 use File;
 use DataTables;
 use App\Instansi;
 use App\SuratKeluar;
 use Illuminate\Http\Request;
+use App\Exports\SuratKeluarReport;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Session;
 
 class SuratKeluarController extends Controller
 {
@@ -111,5 +115,20 @@ class SuratKeluarController extends Controller
         //hapus data di database
         $surat_keluar->delete();
         return redirect()->route('surat-keluar')->with('info','Data Berhasil Dihapus!');
+    }
+    public function periode(){
+        return view('halaman.surat.surat-keluar.periode-surat');
+    }
+    public function show($tgl_awal,$tgl_akhir){
+        $surat_keluar = SuratKeluar::with('instansi')->whereBetween('tgl_kirim',[$tgl_awal,$tgl_akhir])->orderBy('tgl_kirim','ASC')->get();
+        return view('halaman.surat.surat-keluar.show-laporan',compact('surat_keluar','tgl_awal','tgl_akhir'));
+    }
+    public function cetakPDF(){
+        $surat_keluar = SuratKeluar::with('instansi')->orderBy('tgl_kirim','ASC')->get();
+        $pdf = PDF::loadview('halaman.surat.surat-keluar.cetak',compact('surat_keluar'));
+        return $pdf->download('laporan-surat-keluar-pdf');
+    }
+    public function cetakExcel(){
+        return Excel::download(new SuratKeluarReport, 'laporan-surat-keluar-excel.xlsx');
     }
 }
