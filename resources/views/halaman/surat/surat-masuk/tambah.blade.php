@@ -1,10 +1,6 @@
 @extends('templates.default')
 
 @section('title')
-<div>
-    <a href="{{route('surat-masuk')}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i>
-        Kembali</a>
-</div>
 <h2 class="title">Tambah Surat Masuk</h2>
 @endsection
 

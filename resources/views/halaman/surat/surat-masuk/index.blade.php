@@ -1,10 +1,6 @@
 @extends('templates.default')
 
 @section('title')
-<div>
-    <a href="{{route('surat')}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i>
-        Kembali</a>
-</div>
 <h2 class="title">Mangelola Surat Masuk</h2>
 @endsection
 
@@ -15,7 +11,7 @@
             <a href="{{route('tambah.surat-masuk')}}" class="btn btn-success btn-sm float-right"><i
                     class="fas fa-plus"></i> <b>Tambah Data</b></a>
             <a href="{{route('periode.surat-masuk')}}" class="btn btn-success btn-sm float-right"><i
-                    class="fas fa-eye"></i> <b> Laporan Per Periode</b></a>
+                    class="fas fa-eye"></i> <b> Lihat Laporan</b></a>
         </div>
     </div>
     <div class="card-body">

@@ -15,8 +15,8 @@
     <h2 align="center"><b>Laporan Surat Masuk</b></h2>
     <br>
     <center>
-        <a href="/cetak-pdf-surat-masuk" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i> <b>Cetak PDF</b></a>
-        <a href="/cetak-excel-surat-masuk" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i> <b>Cetak Excel</b></a>
+        <a href="/cetak-pdf-surat-masuk" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i> <b>Unduh PDF</b></a>
+        <a href="/cetak-excel-surat-masuk" class="btn btn-primary btn-sm" target="_blank"><i class="fas fa-print"></i> <b>Unduh Excel</b></a>
     </center>
 
     <br>

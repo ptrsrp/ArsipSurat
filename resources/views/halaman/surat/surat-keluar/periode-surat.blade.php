@@ -1,12 +1,5 @@
 @extends('templates.default')
 
-@section('title')
-<div>
-    <a href="{{route('surat')}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i>
-        Kembali</a>
-</div>
-@endsection
-
 @section('content')
 <div class="card card-info card-outline">
     <div class="card-header">

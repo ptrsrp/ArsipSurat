@@ -36,10 +36,3 @@
     </div>
 </div>
 @endsection
-@push('scripts')
-<script>
-    $('.cetak').click(function () {
-        window.print();
-    })
-</script>
-@endpush

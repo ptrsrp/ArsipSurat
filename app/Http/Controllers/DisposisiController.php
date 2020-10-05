@@ -25,7 +25,7 @@ class DisposisiController extends Controller
         ->addColumn('action', function ($disposisi) {
             return "<form action='/hapus-disposisi/".$disposisi->id."' method='POST' >".csrf_field()." 
             <input type='hidden' name='_method' value='DELETE' class='form-control'>
-            <a href='/cetak-disposisi/".$disposisi->id."' class='btn btn-info btn-sm'><i class='fas fa-eye'></i></a>
+            <a href='/show-disposisi/".$disposisi->id."' class='btn btn-info btn-sm'><i class='fas fa-eye'></i></a>
             <a href='/edit-disposisi/".$disposisi->id."' class='btn btn-warning btn-sm'><i class='fas fa-edit'></i></a>
             <button onclick='return confirm_delete()' type='submit' class='btn btn-danger btn-sm'><i class='fas fa-trash-alt'></i></button></form>";
         })

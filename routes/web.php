@@ -28,10 +28,8 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
     //SETTING PROFIL
     Route::get('/edit-profil', 'ProfilController@editProfil')->name('profil.edit');
     Route::put('/update-profil', 'ProfilController@updateProfil')->name('profil.update');
-    Route::get('/ganti-password', 'ProfilController@gantiPassword')->name('profil.password');
-    
-    //PASSWORD
-    Route::post('/update-password', 'PasswordController@update')->name('ganti.password');
+    Route::get('/ganti-password', 'PasswordController@gantiPassword')->name('ganti.password');
+    Route::put('/update-password', 'PasswordController@updatePassword')->name('update.password');
 
     //INSTANSI
     Route::get('/instansi/json', 'InstansiController@json');
@@ -63,7 +61,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin,petugas']], function () {
     Route::get('/edit-disposisi/{id}', 'DisposisiController@edit')->name('edit.disposisi');
     Route::put('/update-disposisi/{id}', 'DisposisiController@update')->name('update.disposisi');
     Route::delete('/hapus-disposisi/{id}', 'DisposisiController@destroy')->name('hapus.disposisi');
-    Route::get('/cetak-disposisi/{id}', 'DisposisiController@cetak')->name('cetak.disposisi');
+    Route::get('/show-disposisi/{id}', 'DisposisiController@cetak')->name('show.disposisi');
     
     //surat keluar
     Route::get('/surat-keluar/json', 'SuratKeluarController@json');

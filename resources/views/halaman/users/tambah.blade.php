@@ -1,10 +1,6 @@
 @extends('templates.default')
 
 @section('title')
-<div>
-    <a href="{{route('users')}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i>
-        Kembali</a>
-</div>
 <h2 class="title">Tambah Data user</h2>
 @endsection
 
@@ -47,7 +43,8 @@
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" name="password" value="{{old('password')}}">
+                <p class="text text-warning">Password Awal Otomatis 123456</p>
+                <input type="password" class="form-control" name="password" value="123456" readonly>
                 @if($errors->has('password'))
                 <div class="text-danger">
                     {{ $errors->first('password')}}

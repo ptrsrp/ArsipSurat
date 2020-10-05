@@ -1,10 +1,6 @@
 @extends('templates.default')
 
 @section('title')
-<div class="col-4">
-    <a href="{{route('jabatan')}}" style="color:white" class="badge badge-dark"><i class="fa fa-arrow-left"></i>
-        Kembali</a>
-</div>
 <h2 class="title">Tambah Data Jabatan</h2>
 @endsection
 

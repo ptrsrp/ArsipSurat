@@ -13,8 +13,8 @@
     <h2 align="center"><b>Laporan Surat Keluar</b></h2>
     <br>
     <center>
-        <a href="/cetak-pdf-surat-keluar" class="btn btn-primary btn-sm" target="_blank"> <b>Cetak PDF</b></a>
-        <a href="/cetak-excel-surat-keluar" class="btn btn-primary btn-sm" target="_blank"> <b>Cetak Excel</b></a>
+        <a href="/cetak-pdf-surat-keluar" class="btn btn-primary btn-sm" target="_blank"> <b>Unduh PDF</b></a>
+        <a href="/cetak-excel-surat-keluar" class="btn btn-primary btn-sm" target="_blank"> <b>Unduh Excel</b></a>
     </center>
 
     <br>
