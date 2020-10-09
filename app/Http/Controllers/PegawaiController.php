@@ -76,16 +76,13 @@ class PegawaiController extends Controller
     {
         $messages = [
             'required' => ':attribute tidak boleh kosong!',
-            'unique' => ':attribute sudah ada!',
         ];
         $this->validate($request,[
-    		'nippos' => 'required|unique:pegawai',
     		'nama' => 'required',
     		'id_bagian' => 'required',
     		'id_jabatan' => 'required',
     	], $messages);
         Pegawai::where(['nippos' => $nippos ])->update([
-            'nippos' => $request->nippos,
             'nama' => $request->nama,
             'id_bagian' => $request->id_bagian,
             'id_jabatan' => $request->id_jabatan,

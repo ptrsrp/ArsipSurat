@@ -14,7 +14,7 @@
             @method('PUT')
             <div class="form-group">
                 <label>NIPPOS</label>
-                <input type="text" name="nippos" class="form-control" value="{{$pegawai->nippos}}">
+                <input type="text" name="nippos" class="form-control" value="{{$pegawai->nippos}}" readonly>
                 @if($errors->has('nippos'))
                 <div class="text-danger">
                     {{ $errors->first('nippos')}}
