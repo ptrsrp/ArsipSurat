@@ -74,19 +74,23 @@ class PegawaiController extends Controller
 
     public function update(Request $request, $nippos)
     {
+        
         $messages = [
             'required' => ':attribute tidak boleh kosong!',
+            'unique' => ':attribute sudah ada!',
         ];
         $this->validate($request,[
+    		'nippos' => "required|unique:pegawai,nippos,$nippos,nippos",
     		'nama' => 'required',
     		'id_bagian' => 'required',
     		'id_jabatan' => 'required',
-    	], $messages);
-        Pegawai::where(['nippos' => $nippos ])->update([
-            'nama' => $request->nama,
-            'id_bagian' => $request->id_bagian,
-            'id_jabatan' => $request->id_jabatan,
-        ]);
+        ], $messages);
+        $pegawai = Pegawai::findorfail($nippos);
+        $pegawai->nippos = $request->nippos;
+        $pegawai->nama = $request->nama;
+        $pegawai->id_bagian = $request->id_bagian;
+        $pegawai->id_jabatan = $request->id_jabatan;
+        $pegawai->save();
         return redirect()->route('data.pegawai')->with('success','Data Berhasil Diubah!');
     }
 

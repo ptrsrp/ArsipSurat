@@ -29,13 +29,13 @@
                     <p>Manajemen Surat</p>
                 </a>
             </li>
-            @if (auth()->user()->level=='admin')
             <li class="{{Request::is('instansi','tambah-instansi') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('instansi')}}">
                     <i class="far fa-building"></i>
                     <p>Manajemen Instansi</p>
                 </a>
             </li>
+            @if (auth()->user()->level=='admin')
             <li
                 class=" {{Request::is('pegawai','bagian','jabatan','data-pegawai','tambah-pegawai','tambah-bagian','tambah-jabatan') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('pegawai')}}">

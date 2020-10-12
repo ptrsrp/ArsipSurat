@@ -17,16 +17,15 @@ class ProfilController extends Controller
 
     public function updateProfil(Request $request)
     {
+        $id = auth()->user()->id;
         $messages = [
             'required' => ':attribute tidak boleh kosong!',
-            'min' => ':attribute minimal 6 karakter!',
             'unique' => ':attribute sudah ada!',
         ];
         $this->validate($request,[
     		'name' => 'required',
     		'level' => 'required',
-    		'username' => 'required|unique:users',
-    		'password' => 'min:6',
+    		'username' => "required|unique:users,username,$id",
         ], $messages);
 
         $user = Auth::user();

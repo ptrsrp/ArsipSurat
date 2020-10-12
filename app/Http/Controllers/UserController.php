@@ -72,13 +72,14 @@ class UserController extends Controller
         $this->validate($request,[
     		'name' => 'required',
     		'level' => 'required',
-    		'username' => 'required|unique:users',
+    		'username' => "required|unique:users,username,$id",
     	],$messages);
-        User::where(['id' => $id])->update([
-            'name' => $request->name,
-            'level' => $request->level,
-            'username' => $request->username,
-        ]);
+        $user = User::findorfail($id);
+        $user->name = $request->name;
+        $user->level = $request->level;
+        $user->username = $request->username;
+        $user->save();
+
         return redirect()->route('users')->with('success','Data Berhasil Diupdate!');
     }
     public function destroy($id)

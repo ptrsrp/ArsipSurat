@@ -8,9 +8,9 @@
     </title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     <!-- CSS Files -->
-    <link href="{{asset('assets/css/material-dashboard.css?v=2.1.2')}}" rel="stylesheet" />
+    <link type="text/css" href="{{asset('assets/css/material-dashboard.css')}}" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="{{asset('assets/demo/demo.css')}}" rel="stylesheet" />
+    <link type="text/css" href="{{asset('assets/demo/demo.css')}}" rel="stylesheet" />
     <!-- FONT ICON -->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/fontawesome-free/css/all.min.css')}}">
     <!-- DataTables -->
