@@ -32,7 +32,7 @@
                 <td> &nbsp;{{ $disposisi->isi }}</td>
             </tr>
         </table>
-        <button class="btn btn-primary btn-sm cetak"><i class="fa fa-print"></i> Cetak</button>
+        <button class="btn btn-primary btn-sm" onclick="window.print()"><i class="fa fa-print"></i> Cetak</button>
     </div>
 </div>
 @endsection

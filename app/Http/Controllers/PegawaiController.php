@@ -46,11 +46,9 @@ class PegawaiController extends Controller
         $messages = [
             'required' => ':attribute tidak boleh kosong!',
             'unique' => ':attribute sudah ada!',
-            'min' => ':attribute minimal 9 digit!',
-            'max' => ':attribute maksimal 9 digit!',
         ];
         $this->validate($request,[
-    		'nippos' => 'required|unique:pegawai|min:9|max:9',
+    		'nippos' => 'required|unique:pegawai',
     		'nama' => 'required',
     		'id_bagian' => 'required',
     		'id_jabatan' => 'required',
@@ -91,7 +89,7 @@ class PegawaiController extends Controller
         $pegawai->id_bagian = $request->id_bagian;
         $pegawai->id_jabatan = $request->id_jabatan;
         $pegawai->save();
-        return redirect()->route('data.pegawai')->with('success','Data Berhasil Diubah!');
+        return redirect()->route('data.pegawai')->with('success','Data Berhasil Diupdate!');
     }
 
     public function destroy($nippos)

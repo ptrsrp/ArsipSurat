@@ -101,7 +101,7 @@ class DisposisiController extends Controller
     public function cetak($id)
     {
         $disposisi = Disposisi::findorfail($id);
-        return view('halaman.surat.disposisi.cetak',compact('disposisi'));
+        return view('halaman.surat.disposisi.show',compact('disposisi'));
     }
 
 }

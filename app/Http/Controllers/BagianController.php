@@ -26,22 +26,11 @@ class BagianController extends Controller
         return view('halaman.pegawai.bagian.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('halaman.pegawai.bagian.tambah');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $messages = [
@@ -56,36 +45,12 @@ class BagianController extends Controller
         return redirect('bagian')->with('success', 'Data Berhasil Ditambahkan!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $bagian = Bagian::findorfail($id);
         return view('halaman.pegawai.bagian.edit', compact('bagian'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $messages = [
@@ -101,12 +66,6 @@ class BagianController extends Controller
         return redirect('bagian')->with('success', 'Data Berhasil Diupdate!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $bagian = Bagian::findorfail($id);

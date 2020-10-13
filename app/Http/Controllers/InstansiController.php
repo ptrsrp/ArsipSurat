@@ -30,12 +30,6 @@ class InstansiController extends Controller
         return view('halaman.instansi.tambah');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $messages = [
@@ -52,36 +46,12 @@ class InstansiController extends Controller
         return redirect('instansi')->with('success', 'Data Berhasil Ditambahkan!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $instansi = Instansi::findorfail($id);
         return view('halaman.instansi.edit', compact('instansi'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $messages = [
@@ -99,12 +69,6 @@ class InstansiController extends Controller
         return redirect('instansi')->with('success', 'Data Berhasil Diupdate!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $instansi = Instansi::findorfail($id);
