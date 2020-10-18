@@ -30,18 +30,6 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <label>Level</label>
-                    <select class="custom-select" name="level">
-                        <option value="admin" {{ $user->level == "admin" ? 'selected' : '' }}>Admin</option>
-                        <option value="petugas" {{ $user->level == "petugas" ? 'selected' : '' }}>Petugas</option>
-                    </select>
-                    @if($errors->has('level'))
-                    <div class="text-danger">
-                        {{ $errors->first('level')}}
-                    </div>
-                    @endif
-                </div>
-                <div class="form-group">
                     <label>Username</label>
                     <input type="text" name="username" class="form-control" value="{{$user->username}}">
                     @if($errors->has('username'))

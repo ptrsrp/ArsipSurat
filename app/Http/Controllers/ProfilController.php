@@ -24,13 +24,11 @@ class ProfilController extends Controller
         ];
         $this->validate($request,[
     		'name' => 'required',
-    		'level' => 'required',
     		'username' => "required|unique:users,username,$id",
         ], $messages);
 
         $user = Auth::user();
         $user->name = $request->name;
-        $user->level = $request->level;
         $user->username = $request->username;
         $user->save();
         
